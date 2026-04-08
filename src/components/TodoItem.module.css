@@ -1,0 +1,76 @@
+.item {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  border-bottom: 1px solid #ededed;
+  min-height: 56px;
+  gap: 12px;
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.item:hover .delete {
+  opacity: 1;
+}
+
+.toggle {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #ededed;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5dc2af;
+  transition: border-color 0.2s;
+}
+
+.toggle:hover {
+  border-color: #ccc;
+}
+
+.completed .toggle {
+  border-color: #5dc2af;
+  background: #5dc2af;
+  color: #fff;
+}
+
+.toggle svg {
+  width: 14px;
+  height: 14px;
+}
+
+.text {
+  flex: 1;
+  font-size: 18px;
+  color: #333;
+  word-break: break-word;
+  transition: color 0.2s;
+}
+
+.completed .text {
+  color: #ccc;
+  text-decoration: line-through;
+}
+
+.delete {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #cc9a9a;
+  cursor: pointer;
+  opacity: 0;
+  padding: 4px 8px;
+  transition: color 0.2s, opacity 0.2s;
+  line-height: 1;
+}
+
+.delete:hover {
+  color: #af5b5e;
+}
