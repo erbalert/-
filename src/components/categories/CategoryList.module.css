@@ -1,0 +1,45 @@
+.group {
+  margin-bottom: 24px;
+}
+
+.groupTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 6px;
+  background: var(--surface);
+}
+
+.actions {
+  display: flex;
+  gap: 6px;
+}
+
+.iconButton {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  padding: 4px 6px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.iconButton:hover {
+  background: var(--surface-2);
+  color: var(--text-primary);
+}
+
+.warning {
+  color: var(--status-critical);
+  font-size: 0.82rem;
+  margin: 2px 0 6px;
+}

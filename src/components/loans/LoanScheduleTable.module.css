@@ -1,0 +1,30 @@
+.wrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.table th, .table td {
+  padding: 6px 10px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  border-bottom: 1px solid var(--gridline);
+}
+
+.table th:first-child, .table td:first-child,
+.table th:nth-child(2), .table td:nth-child(2) {
+  text-align: left;
+}
+
+.table th {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.pastRow {
+  color: var(--text-muted);
+}

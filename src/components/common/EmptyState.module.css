@@ -1,0 +1,14 @@
+.wrap {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-muted);
+}
+
+.icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.text {
+  font-size: 0.95rem;
+}

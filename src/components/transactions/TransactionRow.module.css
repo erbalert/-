@@ -1,0 +1,76 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 6px;
+  background: var(--surface);
+}
+
+.date {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  width: 78px;
+  flex-shrink: 0;
+}
+
+.account {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  width: 100px;
+  flex-shrink: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.category {
+  flex: 1;
+  min-width: 0;
+}
+
+.note {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.amount {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  width: 160px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.amountIncome {
+  color: var(--income);
+}
+
+.amountExpense {
+  color: var(--expense);
+}
+
+.actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.iconButton {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  padding: 4px 6px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.iconButton:hover {
+  background: var(--surface-2);
+  color: var(--text-primary);
+}

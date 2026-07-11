@@ -1,0 +1,45 @@
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background: var(--surface);
+}
+
+.name {
+  font-weight: 500;
+}
+
+.balance {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-secondary);
+  margin-left: 12px;
+}
+
+.actions {
+  display: flex;
+  gap: 6px;
+}
+
+.iconButton {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  padding: 4px 6px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.iconButton:hover {
+  background: var(--surface-2);
+  color: var(--text-primary);
+}
+
+.warning {
+  color: var(--status-critical);
+  font-size: 0.82rem;
+  margin-top: 4px;
+}
