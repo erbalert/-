@@ -58,6 +58,7 @@ export interface Loan {
   startDate: string
   paymentType: LoanPaymentType
   active: boolean
+  autoDetected?: boolean
 }
 
 export interface TransactionFilters {

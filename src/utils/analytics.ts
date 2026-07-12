@@ -11,6 +11,25 @@ export interface CategorySlice {
   amount: number
 }
 
+/** Number of months spanned by the data, from the earliest transaction to today (min 1). */
+export function monthsSpan(transactions: Transaction[]): number {
+  if (transactions.length === 0) return 12
+  let earliest = transactions[0].date
+  for (const t of transactions) if (t.date < earliest) earliest = t.date
+  const from = parseISO(earliest)
+  const now = parseISO(todayIso())
+  const months = (now.getFullYear() - from.getFullYear()) * 12 + (now.getMonth() - from.getMonth()) + 1
+  return Math.max(1, months)
+}
+
+/** Filter transactions to the last `months` calendar months (inclusive of the current month). */
+export function scopeByMonths(transactions: Transaction[], months: number): Transaction[] {
+  if (!months || months <= 0) return transactions
+  const now = parseISO(todayIso())
+  const from = format(subMonths(new Date(now.getFullYear(), now.getMonth(), 1), months - 1), 'yyyy-MM-dd')
+  return transactions.filter(t => t.date >= from)
+}
+
 export interface PeriodBucket {
   period: string
   label: string

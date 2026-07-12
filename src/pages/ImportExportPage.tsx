@@ -13,9 +13,15 @@ import Card from '../components/common/Card'
 import Button from '../components/common/Button'
 import ConfirmDialog from '../components/common/ConfirmDialog'
 import PdfImport from '../components/importpdf/PdfImport'
+import StatementDropZone from '../components/importpdf/StatementDropZone'
+import type { Tab } from '../App'
 import styles from './ImportExportPage.module.css'
 
-export default function ImportExportPage() {
+interface Props {
+  onNavigate: (tab: Tab) => void
+}
+
+export default function ImportExportPage({ onNavigate }: Props) {
   const { accounts } = useAccounts()
   const { categories } = useCategories()
   const { transactions, addTransactionsBulk } = useTransactions()
@@ -26,6 +32,7 @@ export default function ImportExportPage() {
 
   const [result, setResult] = useState<CsvImportResult | null>(null)
   const [confirmingClear, setConfirmingClear] = useState(false)
+  const [showManual, setShowManual] = useState(false)
 
   function handleExport() {
     const content = exportTransactionsToCsv(transactions, accounts, categories)
@@ -104,10 +111,20 @@ export default function ImportExportPage() {
       <Card className={styles.section}>
         <h2 className={styles.sectionTitle}>Импорт PDF-выписок (Kaspi, Halyk)</h2>
         <p className={styles.hint}>
-          Выберите банк и загрузите PDF-выписку. Операции распознаются автоматически — проверьте и отредактируйте их
-          перед сохранением.
+          Банк определяется автоматически. Загрузите одну или несколько выписок — операции, счета, категории и кредиты
+          будут распознаны и добавлены сразу.
         </p>
-        <PdfImport />
+        <StatementDropZone onImported={() => onNavigate('dashboard')} />
+        <div style={{ marginTop: 'var(--sp-3)' }}>
+          <Button variant="ghost" size="sm" icon={showManual ? 'chevronDown' : 'chevronRight'} onClick={() => setShowManual(s => !s)}>
+            Ручной режим (проверить перед импортом)
+          </Button>
+        </div>
+        {showManual && (
+          <div style={{ marginTop: 'var(--sp-3)' }}>
+            <PdfImport />
+          </div>
+        )}
       </Card>
 
       <Card className={styles.section}>

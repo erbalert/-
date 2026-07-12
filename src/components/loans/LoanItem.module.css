@@ -31,6 +31,18 @@
   margin-top: 2px;
 }
 
+.estimate {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 8px;
+  border-radius: var(--r-pill);
+  background: var(--status-warning-soft);
+  color: var(--status-warning);
+  font-size: 0.68rem;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
 .remaining {
   text-align: right;
   font-variant-numeric: tabular-nums;

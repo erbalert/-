@@ -39,9 +39,11 @@ export default function LoanItem({ loan, selected, onSelect }: Props) {
         <div>
           <div className={styles.name}>
             {loan.name} {!loan.active && '(закрыт)'}
+            {loan.autoDetected && <span className={styles.estimate}>оценка</span>}
           </div>
           <div className={styles.meta}>
             {formatMoney(loan.principal)} · {loan.interestRate}% годовых · {loan.termMonths} мес.
+            {loan.autoDetected && ' · уточните параметры'}
           </div>
         </div>
         <div className={styles.remaining}>

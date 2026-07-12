@@ -34,7 +34,7 @@ export default function App() {
         {tab === 'budgets' && <BudgetsPage />}
         {tab === 'recurring' && <RecurringPage />}
         {tab === 'loans' && <LoansPage />}
-        {tab === 'import-export' && <ImportExportPage />}
+        {tab === 'import-export' && <ImportExportPage onNavigate={setTab} />}
       </main>
       {tab !== 'transactions' && (
         <button className={styles.fab} onClick={() => setTab('transactions')} aria-label="Добавить операцию">

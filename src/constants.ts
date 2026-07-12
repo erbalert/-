@@ -16,6 +16,7 @@ export const DEFAULT_EXPENSE_CATEGORIES: Omit<Category, 'id'>[] = [
   { name: 'Здоровье', type: 'expense', color: CATEGORY_COLOR_PALETTE[4], icon: '💊', isDefault: true },
   { name: 'Развлечения', type: 'expense', color: CATEGORY_COLOR_PALETTE[5], icon: '🎬', isDefault: true },
   { name: 'Кредиты', type: 'expense', color: CATEGORY_COLOR_PALETTE[6], icon: '🏦', isDefault: true },
+  { name: 'Переводы', type: 'expense', color: '#898781', icon: '🔄', isDefault: true },
   { name: 'Прочее', type: 'expense', color: CATEGORY_COLOR_PALETTE[7], icon: '📦', isDefault: true },
 ]
 
@@ -24,8 +25,14 @@ export const DEFAULT_INCOME_CATEGORIES: Omit<Category, 'id'>[] = [
   { name: 'Подработка', type: 'income', color: CATEGORY_COLOR_PALETTE[1], icon: '🧰', isDefault: true },
   { name: 'Инвестиции', type: 'income', color: CATEGORY_COLOR_PALETTE[0], icon: '📈', isDefault: true },
   { name: 'Подарки', type: 'income', color: CATEGORY_COLOR_PALETTE[6], icon: '🎁', isDefault: true },
+  { name: 'Пополнения', type: 'income', color: '#898781', icon: '🔄', isDefault: true },
   { name: 'Прочее', type: 'income', color: CATEGORY_COLOR_PALETTE[7], icon: '📦', isDefault: true },
 ]
+
+// Categories that represent money movement, not real consumption/earnings.
+export const TRANSFER_CATEGORY_NAMES = ['Переводы', 'Пополнения']
+// Categories excluded from "spending" insight widgets (merchants, subscriptions, biggest spends).
+export const NON_SPENDING_CATEGORY_NAMES = ['Переводы', 'Пополнения', 'Кредиты']
 
 export const MAX_PIE_SLICES = 7
 export const OTHER_SLICE_COLOR = '#898781'

@@ -5,10 +5,12 @@ interface Rule {
   re: RegExp
 }
 
+// Order matters — first match wins. Loans/transfers are checked before generic buckets.
 const EXPENSE_RULES: Rule[] = [
+  { category: 'Кредиты', re: /KASPI\s?КРЕДИТ|ПОГАШЕНИ[ЕЯ][^.]{0,40}(КРЕДИТ|ЗАДОЛЖЕННОСТ)|ОПЛАТА\s+КРЕДИТ|РАССРОЧ|ИПОТЕК|АВТОКРЕДИТ|МИКРОКРЕДИТ/i },
+  { category: 'Переводы', re: /ПЕРЕВОД|СНЯТИ|НА СВОЙ|НА ДЕПОЗИТ|ПОПОЛНЕНИЕ СВОЕГО|ВЫВОД СРЕДСТВ|НА КАРТУ|P2P/i },
   { category: 'Продукты', re: /MAGNUM|MART|MARKET|МАРКЕТ|SUPERMARKET|GROCERY|ПРОДУКТ|GALMART|ANVAR|ADAL|SMALL|MAGAZIN|DASTARKHAN|SHYNAR|ARZAN/i },
   { category: 'Здоровье', re: /PHARMACY|АПТЕК|PHARMA|HEALTH|КЛИНИК|MEDIC|АРУ|RAUZE|DENT|HOSPITAL/i },
-  { category: 'Кредиты', re: /КРЕДИТ|ПОГАШЕНИЕ|LOAN|РАССРОЧ|ЗАДОЛЖЕННОСТ/i },
   { category: 'Кафе и рестораны', re: /RESTORAN|CAFE|КАФЕ|COFFEE|\bBAR\b|REST|ПИЦЦ|BURGER|KFC|SUSHI|FOOD|POST|ДОНЕР|CHAIHANA/i },
   { category: 'Транспорт', re: /TAXI|ТАКСИ|BOLT|YANDEX|\bGAS\b|АЗС|БЕНЗИН|PETROL|WISSOL|АВТО|TRANSPORT|МЕТРО|\bBUS\b|PARKING|ПАРКОВ/i },
   { category: 'Развлечения', re: /KINO|CINEMA|КИНО|GAME|ИГР|ENTERTAIN|КОНЦЕРТ|NETFLIX|SPOTIFY|APPLE\.COM|ANTHROPIC|CLAUDE|\bSUB\b|STEAM|PLAYSTATION/i },
@@ -17,8 +19,9 @@ const EXPENSE_RULES: Rule[] = [
 
 const INCOME_RULES: Rule[] = [
   { category: 'Зарплата', re: /ЗАРПЛАТ|\bЗП\b|SALARY|OPLATA TRUDA/i },
-  { category: 'Инвестиции', re: /ДЕПОЗИТ|ПРОЦЕНТ|ВКЛАД|DIVIDEND|ИНВЕСТ/i },
+  { category: 'Инвестиции', re: /ПРОЦЕНТ|ДИВИДЕНД|\bВКЛАД\b|DIVIDEND|ИНВЕСТ/i },
   { category: 'Подарки', re: /ПОДАР|GIFT/i },
+  { category: 'Пополнения', re: /ПОПОЛНЕНИ|ПЕРЕВОД|С КАРТЫ ДРУГОГО|С ДЕПОЗИТА|ЗАЧИСЛЕНИЕ С|ВХОДЯЩ|С КАРТЫ|НА КАРТУ/i },
 ]
 
 /** Best-effort category suggestion for an imported statement row. Falls back to "Прочее". */

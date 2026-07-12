@@ -1,15 +1,10 @@
 import type { Tab } from '../../App'
 import Icon from '../common/Icon'
 import Button from '../common/Button'
+import StatementDropZone from '../importpdf/StatementDropZone'
 import { useDataActions } from '../../hooks/useDataActions'
 import { useToast } from '../common/Toast'
 import styles from './Onboarding.module.css'
-
-const STEPS = [
-  { title: 'Создайте счёт', desc: 'Например «Карта» или «Наличные» — на нём будут храниться операции.' },
-  { title: 'Добавьте операцию', desc: 'Запишите доход или расход с суммой, категорией и датой.' },
-  { title: 'Смотрите аналитику', desc: 'Графики, бюджеты и баланс обновятся автоматически.' },
-]
 
 interface Props {
   onNavigate: (tab: Tab) => void
@@ -30,32 +25,25 @@ export default function Onboarding({ onNavigate }: Props) {
         <div className={styles.badge}>
           <Icon name="sparkles" size={30} />
         </div>
-        <h1 className={styles.title}>Добро пожаловать!</h1>
+        <h1 className={styles.title}>Загрузите выписки — остальное сделаю я</h1>
         <p className={styles.subtitle}>
-          Учёт доходов и расходов, бюджеты, кредиты и аналитика — всё локально в вашем браузере. Начните за 3 шага.
+          Перетащите PDF-выписки банка (можно за весь год) — приложение само распознает операции, определит счета,
+          категории и кредиты и построит аналитику. Всё локально в вашем браузере.
         </p>
       </div>
 
-      <div className={styles.steps}>
-        {STEPS.map((step, i) => (
-          <div className={styles.step} key={i}>
-            <span className={styles.stepNum}>{i + 1}</span>
-            <div className={styles.stepText}>
-              <div className={styles.stepTitle}>{step.title}</div>
-              <div className={styles.stepDesc}>{step.desc}</div>
-            </div>
-          </div>
-        ))}
-      </div>
+      <StatementDropZone onImported={() => onNavigate('dashboard')} />
 
       <div className={styles.actions}>
-        <Button icon="wallet" size="lg" onClick={() => onNavigate('accounts')}>
-          Создать первый счёт
-        </Button>
         <span className={styles.or}>или</span>
-        <Button variant="secondary" icon="sparkles" onClick={handleDemo}>
-          Загрузить демо-данные
-        </Button>
+        <div className={styles.secondaryActions}>
+          <Button variant="secondary" icon="sparkles" onClick={handleDemo}>
+            Демо-данные
+          </Button>
+          <Button variant="ghost" icon="wallet" onClick={() => onNavigate('accounts')}>
+            Ввести вручную
+          </Button>
+        </div>
       </div>
     </div>
   )

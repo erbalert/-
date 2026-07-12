@@ -79,8 +79,16 @@
 .actions {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-2);
+  gap: var(--sp-3);
   align-items: center;
+  margin-top: var(--sp-4);
+}
+
+.secondaryActions {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .or {
