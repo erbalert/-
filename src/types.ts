@@ -115,5 +115,6 @@ export interface ParsedStatementRow {
   amount: number
   type: TransactionType
   description: string
+  operationHint?: string
   raw: string
 }

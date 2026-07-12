@@ -12,6 +12,7 @@ import PageHeader from '../components/layout/PageHeader'
 import Card from '../components/common/Card'
 import Button from '../components/common/Button'
 import ConfirmDialog from '../components/common/ConfirmDialog'
+import PdfImport from '../components/importpdf/PdfImport'
 import styles from './ImportExportPage.module.css'
 
 export default function ImportExportPage() {
@@ -102,9 +103,11 @@ export default function ImportExportPage() {
 
       <Card className={styles.section}>
         <h2 className={styles.sectionTitle}>Импорт PDF-выписок (Kaspi, Halyk)</h2>
-        <p className={styles.disabledNote}>
-          Раздел в разработке — разбор PDF-выписок Kaspi и Halyk будет добавлен следующим шагом.
+        <p className={styles.hint}>
+          Выберите банк и загрузите PDF-выписку. Операции распознаются автоматически — проверьте и отредактируйте их
+          перед сохранением.
         </p>
+        <PdfImport />
       </Card>
 
       <Card className={styles.section}>
