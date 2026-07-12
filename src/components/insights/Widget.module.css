@@ -1,0 +1,116 @@
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--sp-5);
+  height: 100%;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-3);
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background: none;
+  border: none;
+  color: var(--brand-1);
+  font-weight: 600;
+  font-size: 0.82rem;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.headline {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+
+.headlineSub {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  margin-top: 2px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: var(--sp-3);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 8px 0;
+  border-top: 1px solid var(--gridline);
+}
+
+.row:first-child {
+  border-top: none;
+}
+
+.rowMain {
+  flex: 1;
+  min-width: 0;
+}
+
+.rowName {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rowSub {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.rowValue {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: var(--r-md);
+  font-size: 1rem;
+}
+
+.empty {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  padding: var(--sp-3) 0;
+}
+
+.up {
+  color: var(--expense);
+}
+
+.down {
+  color: var(--income);
+}

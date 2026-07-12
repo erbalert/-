@@ -1,0 +1,35 @@
+.detail {
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.statsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.stat {
+  min-width: 140px;
+}
+
+.statLabel {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.statValue {
+  font-size: 1.05rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.subTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 16px 0 8px;
+}

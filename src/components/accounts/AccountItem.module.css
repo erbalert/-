@@ -1,0 +1,52 @@
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  margin-bottom: var(--sp-2);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  min-width: 0;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: var(--r-md);
+  background: var(--brand-soft);
+  color: var(--brand-1);
+}
+
+.name {
+  font-weight: 600;
+}
+
+.balance {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+}
+
+.actions {
+  display: flex;
+  gap: 2px;
+}
+
+.warning {
+  color: var(--status-critical);
+  font-size: 0.82rem;
+  margin: 4px 0 8px;
+}

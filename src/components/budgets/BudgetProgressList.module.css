@@ -1,0 +1,44 @@
+.item {
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  margin-bottom: var(--sp-2);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-2);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.amounts {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.status {
+  margin-top: 8px;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.statusWarning {
+  color: var(--status-warning);
+}
+
+.statusCritical {
+  color: var(--status-critical);
+}

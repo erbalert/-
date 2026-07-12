@@ -1,0 +1,64 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.typeToggle {
+  display: flex;
+  gap: 6px;
+}
+
+.typeButton {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--text-secondary);
+}
+
+.typeButtonActiveIncome {
+  background: var(--income);
+  color: #fff;
+  border-color: var(--income);
+}
+
+.typeButtonActiveExpense {
+  background: var(--expense);
+  color: #fff;
+  border-color: var(--expense);
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+}
+
+.input, .select {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  min-width: 0;
+}
+
+.submitButton {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: 500;
+}
+
+.submitButton:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.hint {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}

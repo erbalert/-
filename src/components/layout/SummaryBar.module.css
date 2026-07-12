@@ -1,0 +1,113 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-xl);
+  background: var(--brand-gradient);
+  box-shadow: var(--shadow-lg);
+  padding: var(--sp-5) var(--sp-5) var(--sp-4);
+  color: #fff;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 240px;
+  height: 240px;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.label {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  margin-bottom: 4px;
+}
+
+.balance {
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.deltas {
+  display: flex;
+  gap: var(--sp-5);
+  margin-top: var(--sp-4);
+}
+
+.delta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.deltaIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.deltaLabel {
+  font-size: 0.72rem;
+  opacity: 0.85;
+}
+
+.deltaValue {
+  font-size: 0.98rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.chips {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.16);
+  font-size: 0.82rem;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+}
+
+.chipDebt {
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.chipName {
+  opacity: 0.85;
+}
+
+.chipValue {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 480px) {
+  .balance {
+    font-size: 1.9rem;
+  }
+
+  .deltas {
+    gap: var(--sp-4);
+  }
+
+  .chip {
+    font-size: 0.78rem;
+  }
+}

@@ -1,0 +1,135 @@
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  align-items: center;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.warning {
+  margin-top: var(--sp-3);
+  padding: 10px 14px;
+  border-radius: var(--r-md);
+  background: var(--status-warning-soft);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.previewHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  margin: var(--sp-4) 0 var(--sp-3);
+}
+
+.count {
+  font-weight: 700;
+}
+
+.bulkRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  align-items: center;
+}
+
+.accountRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  align-items: center;
+  margin-bottom: var(--sp-3);
+}
+
+.accountLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.control {
+  padding: 8px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+}
+
+.control:focus {
+  outline: none;
+  border-color: var(--brand-1);
+  box-shadow: 0 0 0 3px var(--brand-soft);
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  max-height: 460px;
+  overflow-y: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.table th {
+  position: sticky;
+  top: 0;
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-weight: 600;
+  text-align: left;
+  padding: 8px 10px;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.table td {
+  padding: 6px 10px;
+  border-top: 1px solid var(--gridline);
+  vertical-align: middle;
+}
+
+.cellInput {
+  width: 100%;
+  min-width: 90px;
+  padding: 6px 8px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  color: var(--text-primary);
+  font-size: 0.82rem;
+}
+
+.cellInput:focus {
+  outline: none;
+  border-color: var(--brand-1);
+}
+
+.amountInput {
+  width: 110px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.descInput {
+  min-width: 180px;
+}
+
+.footer {
+  display: flex;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+}
