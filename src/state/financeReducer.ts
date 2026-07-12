@@ -30,6 +30,7 @@ export type FinanceAction =
       payload: { newTransactions: Transaction[]; updatedRules: RecurringRule[] }
     }
   | { type: 'REPLACE_STATE'; payload: PersistedState }
+  | { type: 'IMPORT_COMMIT'; payload: { accounts: Account[]; loans: Loan[]; transactions: Transaction[] } }
   | { type: 'ADD_LOAN'; payload: Loan }
   | { type: 'UPDATE_LOAN'; payload: Loan }
   | { type: 'DELETE_LOAN'; payload: { id: string } }
@@ -57,6 +58,14 @@ export function financeReducer(state: PersistedState, action: FinanceAction): Pe
   switch (action.type) {
     case 'REPLACE_STATE':
       return action.payload
+
+    case 'IMPORT_COMMIT':
+      return {
+        ...state,
+        accounts: [...state.accounts, ...action.payload.accounts],
+        loans: [...state.loans, ...action.payload.loans],
+        transactions: [...action.payload.transactions, ...state.transactions],
+      }
 
     case 'ADD_ACCOUNT':
       return { ...state, accounts: [...state.accounts, action.payload] }

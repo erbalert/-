@@ -22,15 +22,30 @@ export interface StatementParser {
   defaultAccountName: (pages: RawLine[][]) => string
 }
 
-/** Extract text as lines (grouped by y-coordinate, sorted by x) for each page. */
-export async function extractLines(file: File): Promise<RawLine[][]> {
+type PDFDoc = Awaited<ReturnType<typeof pdfjsLib.getDocument>['promise']>
+
+/** Open a PDF document. Fast — only parses the doc structure, not page content. */
+export async function loadDocument(file: File): Promise<PDFDoc> {
   const buffer = await file.arrayBuffer()
-  const doc = await pdfjsLib.getDocument({ data: new Uint8Array(buffer) }).promise
+  // We only need the text layer, so skip embedded-font work entirely.
+  return pdfjsLib.getDocument({
+    data: new Uint8Array(buffer),
+    disableFontFace: true,
+    useSystemFonts: false,
+    isEvalSupported: false,
+  }).promise
+}
+
+/** Extract text lines from an already-opened document, reporting per-page progress. */
+export async function extractLinesFromDoc(
+  doc: PDFDoc,
+  onPage?: (pageDone: number, numPages: number) => void
+): Promise<RawLine[][]> {
   const pages: RawLine[][] = []
 
   for (let p = 1; p <= doc.numPages; p++) {
     const page = await doc.getPage(p)
-    const content = await page.getTextContent()
+    const content = await page.getTextContent({ includeMarkedContent: false, disableNormalization: true })
     const rows = new Map<number, { x: number; str: string }[]>()
 
     for (const item of content.items) {
@@ -50,9 +65,20 @@ export async function extractLines(file: File): Promise<RawLine[][]> {
       .filter(l => l.text.length > 0)
 
     pages.push(lines)
+    page.cleanup()
+    onPage?.(p, doc.numPages)
   }
 
   return pages
+}
+
+/** Convenience: open + extract text lines for a single file. */
+export async function extractLines(
+  file: File,
+  onPage?: (pageDone: number, numPages: number) => void
+): Promise<RawLine[][]> {
+  const doc = await loadDocument(file)
+  return extractLinesFromDoc(doc, onPage)
 }
 
 /** Shared helpers for parsers */

@@ -1,5 +1,5 @@
 import type { Account, Loan, PersistedState, ParsedStatementRow, Transaction } from '../types'
-import { extractLines } from './pdfStatement'
+import { extractLinesFromDoc, loadDocument } from './pdfStatement'
 import type { StatementParser } from './pdfStatement'
 import { kaspiParser } from './parsers/kaspi'
 import { halykParser } from './parsers/halyk'
@@ -33,7 +33,20 @@ interface Staged {
   accountName: string
 }
 
-export async function runImport(files: File[], state: PersistedState): Promise<ImportResult> {
+export interface ImportProgress {
+  phase: 'parse' | 'commit'
+  processedPages: number
+  totalPages: number
+  fileIndex: number
+  files: number
+  fileName: string
+}
+
+export async function runImport(
+  files: File[],
+  state: PersistedState,
+  onProgress?: (p: ImportProgress) => void
+): Promise<ImportResult> {
   const existingAccountByName = new Map(state.accounts.map(a => [a.name.toLowerCase(), a]))
   const newAccounts: Account[] = []
   const accountIdByName = new Map<string, string>()
@@ -57,14 +70,46 @@ export async function runImport(files: File[], state: PersistedState): Promise<I
   const perBank: Record<string, number> = {}
   const staged: Staged[] = []
 
+  // Phase 1: open all docs (cheap) to know the total page count for a smooth progress bar.
+  interface Opened { file: File; doc: Awaited<ReturnType<typeof loadDocument>> | null; numPages: number }
+  const opened: Opened[] = []
   for (const file of files) {
-    let pages
     try {
-      pages = await extractLines(file)
+      const doc = await loadDocument(file)
+      opened.push({ file, doc, numPages: doc.numPages })
     } catch {
+      opened.push({ file, doc: null, numPages: 0 })
+    }
+  }
+  const totalPages = opened.reduce((s, o) => s + o.numPages, 0)
+  let processedPages = 0
+
+  // Phase 2: extract text page by page, reporting global progress.
+  for (let fi = 0; fi < opened.length; fi++) {
+    const { file, doc } = opened[fi]
+    if (!doc) {
       unrecognized.push(file.name)
       continue
     }
+    let pages
+    try {
+      pages = await extractLinesFromDoc(doc, done => {
+        onProgress?.({
+          phase: 'parse',
+          processedPages: processedPages + done,
+          totalPages,
+          fileIndex: fi + 1,
+          files: opened.length,
+          fileName: file.name,
+        })
+      })
+    } catch {
+      unrecognized.push(file.name)
+      processedPages += doc.numPages
+      continue
+    }
+    processedPages += doc.numPages
+
     const parser = PARSERS.find(p => p.detect(pages!))
     if (!parser) {
       unrecognized.push(file.name)
@@ -75,6 +120,8 @@ export async function runImport(files: File[], state: PersistedState): Promise<I
     perBank[parser.label] = (perBank[parser.label] ?? 0) + rows.length
     for (const row of rows) staged.push({ row, accountName })
   }
+
+  onProgress?.({ phase: 'commit', processedPages: totalPages, totalPages, fileIndex: opened.length, files: opened.length, fileName: '' })
 
   // Dedupe within import and against existing transactions (note holds the description).
   const seen = new Set(state.transactions.map(t => dedupeKey(t.date, t.type, t.amount, t.note ?? '')))

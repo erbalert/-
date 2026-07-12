@@ -15,6 +15,7 @@ export default function StatementDropZone({ onImported }: Props) {
   const inputRef = useRef<HTMLInputElement>(null)
   const [loading, setLoading] = useState(false)
   const [dragover, setDragover] = useState(false)
+  const [progress, setProgress] = useState<{ pct: number; label: string } | null>(null)
 
   async function handleFiles(fileList: FileList | null) {
     if (!fileList || fileList.length === 0) return
@@ -25,15 +26,25 @@ export default function StatementDropZone({ onImported }: Props) {
     }
 
     setLoading(true)
+    setProgress({ pct: 0, label: 'Готовим файлы…' })
     try {
       const { runImport } = await import('../../import/importPipeline')
-      const result = await runImport(files, state)
+      const result = await runImport(files, state, p => {
+        if (p.phase === 'commit') {
+          setProgress({ pct: 100, label: 'Сохраняем…' })
+          return
+        }
+        const pct = p.totalPages > 0 ? Math.round((p.processedPages / p.totalPages) * 100) : 0
+        const filePart = p.files > 1 ? `файл ${p.fileIndex} из ${p.files} · ` : ''
+        setProgress({ pct, label: `Распознаём: ${filePart}страница ${p.processedPages}/${p.totalPages}` })
+      })
 
-      result.newAccounts.forEach(a => dispatch({ type: 'ADD_ACCOUNT', payload: a }))
-      result.newLoans.forEach(l => dispatch({ type: 'ADD_LOAN', payload: l }))
       const now = Date.now()
       const txs = result.transactions.map(t => ({ ...t, id: crypto.randomUUID(), createdAt: now }))
-      if (txs.length > 0) dispatch({ type: 'ADD_TRANSACTIONS_BULK', payload: { transactions: txs } })
+      dispatch({
+        type: 'IMPORT_COMMIT',
+        payload: { accounts: result.newAccounts, loans: result.newLoans, transactions: txs },
+      })
 
       const { stats } = result
       if (stats.imported === 0) {
@@ -60,6 +71,7 @@ export default function StatementDropZone({ onImported }: Props) {
       toast.error('Ошибка при обработке выписок')
     } finally {
       setLoading(false)
+      setProgress(null)
       if (inputRef.current) inputRef.current.value = ''
     }
   }
@@ -67,8 +79,13 @@ export default function StatementDropZone({ onImported }: Props) {
   if (loading) {
     return (
       <div className={styles.loading}>
-        <div className={styles.spinner} />
-        <div>Распознаём выписки…</div>
+        <div className={styles.progressTrack}>
+          <div className={styles.progressFill} style={{ width: `${progress?.pct ?? 0}%` }} />
+        </div>
+        <div className={styles.progressText}>
+          <span>{progress?.label ?? 'Распознаём выписки…'}</span>
+          <span className={styles.progressPct}>{progress?.pct ?? 0}%</span>
+        </div>
       </div>
     )
   }
