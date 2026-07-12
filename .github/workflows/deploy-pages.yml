@@ -1,0 +1,44 @@
+name: Deploy to GitHub Pages
+
+# Собирает приложение и публикует его на GitHub Pages.
+# Триггерится при push в рабочую ветку, а также вручную (workflow_dispatch).
+on:
+  push:
+    branches:
+      - claude/income-expense-tracker-1gpt58
+  workflow_dispatch:
+
+# Разрешаем воркфлоу пушить собранный сайт в ветку gh-pages.
+permissions:
+  contents: write
+
+# Не запускать несколько деплоев параллельно.
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (base=/-/)
+        run: npm run build:pages
+
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages

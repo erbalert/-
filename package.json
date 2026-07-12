@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:pages": "tsc && vite build --base=/-/",
     "build:single": "vite build --config vite.config.artifact.ts",
     "preview": "vite preview"
   },
