@@ -24,16 +24,41 @@ export interface StatementParser {
 
 type PDFDoc = Awaited<ReturnType<typeof pdfjsLib.getDocument>['promise']>
 
+/** Thrown when opening/reading a PDF takes too long (usually a blocked pdf.js worker). */
+export class PdfTimeoutError extends Error {
+  constructor() {
+    super('PDF processing timed out')
+    this.name = 'PdfTimeoutError'
+  }
+}
+
+const OPEN_TIMEOUT_MS = 15000
+
 /** Open a PDF document. Fast — only parses the doc structure, not page content. */
 export async function loadDocument(file: File): Promise<PDFDoc> {
   const buffer = await file.arrayBuffer()
   // We only need the text layer, so skip embedded-font work entirely.
-  return pdfjsLib.getDocument({
+  const task = pdfjsLib.getDocument({
     data: new Uint8Array(buffer),
     disableFontFace: true,
     useSystemFonts: false,
     isEvalSupported: false,
-  }).promise
+  })
+
+  let timer: ReturnType<typeof setTimeout>
+  const timeout = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => {
+      // Abort the loading task so it stops occupying the (possibly stuck) worker.
+      task.destroy().catch(() => {})
+      reject(new PdfTimeoutError())
+    }, OPEN_TIMEOUT_MS)
+  })
+
+  try {
+    return await Promise.race([task.promise, timeout])
+  } finally {
+    clearTimeout(timer!)
+  }
 }
 
 /** Extract text lines from an already-opened document, reporting per-page progress. */

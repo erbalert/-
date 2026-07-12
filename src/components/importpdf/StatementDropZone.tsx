@@ -9,6 +9,16 @@ interface Props {
   onImported?: () => void
 }
 
+// True when the app runs inside an iframe (e.g. the hosted demo), where a strict
+// content-security policy can block the pdf.js worker needed to read PDFs.
+const isSandboxed = (() => {
+  try {
+    return window.self !== window.top
+  } catch {
+    return true
+  }
+})()
+
 export default function StatementDropZone({ onImported }: Props) {
   const { state, dispatch } = useFinance()
   const toast = useToast()
@@ -48,7 +58,12 @@ export default function StatementDropZone({ onImported }: Props) {
 
       const { stats } = result
       if (stats.imported === 0) {
-        if (stats.duplicates > 0) toast.info(`Новых операций нет — пропущено дублей: ${stats.duplicates}`)
+        if (stats.timedOut)
+          toast.error(
+            'Не удалось обработать PDF — похоже, браузер заблокировал распознавание. Откройте приложение локально или попробуйте демо-данные.',
+            { duration: 9000 }
+          )
+        else if (stats.duplicates > 0) toast.info(`Новых операций нет — пропущено дублей: ${stats.duplicates}`)
         else if (stats.unrecognized.length > 0) toast.error('Не удалось распознать выписку. Поддерживаются Kaspi и Halyk.')
         else toast.error('В файле не найдено операций')
       } else {
@@ -124,6 +139,12 @@ export default function StatementDropZone({ onImported }: Props) {
         </span>
         <span className={styles.banks}>Поддерживаются Kaspi и Halyk</span>
       </div>
+      {isSandboxed && (
+        <p className={styles.sandboxNote}>
+          В этом онлайн-демо распознавание PDF может быть недоступно из-за ограничений браузера. Полноценно работает при
+          локальном запуске — или попробуйте «Демо-данные».
+        </p>
+      )}
       <input
         ref={inputRef}
         className={styles.hiddenInput}

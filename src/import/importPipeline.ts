@@ -1,5 +1,5 @@
 import type { Account, Loan, PersistedState, ParsedStatementRow, Transaction } from '../types'
-import { extractLinesFromDoc, loadDocument } from './pdfStatement'
+import { extractLinesFromDoc, loadDocument, PdfTimeoutError } from './pdfStatement'
 import type { StatementParser } from './pdfStatement'
 import { kaspiParser } from './parsers/kaspi'
 import { halykParser } from './parsers/halyk'
@@ -17,6 +17,7 @@ export interface ImportStats {
   perBank: Record<string, number>
   dateRange: { from: string; to: string } | null
   loansDetected: number
+  timedOut: boolean
 }
 
 export interface ImportResult {
@@ -73,11 +74,13 @@ export async function runImport(
   // Phase 1: open all docs (cheap) to know the total page count for a smooth progress bar.
   interface Opened { file: File; doc: Awaited<ReturnType<typeof loadDocument>> | null; numPages: number }
   const opened: Opened[] = []
+  let timedOut = false
   for (const file of files) {
     try {
       const doc = await loadDocument(file)
       opened.push({ file, doc, numPages: doc.numPages })
-    } catch {
+    } catch (err) {
+      if (err instanceof PdfTimeoutError) timedOut = true
       opened.push({ file, doc: null, numPages: 0 })
     }
   }
@@ -198,6 +201,7 @@ export async function runImport(
       perBank,
       dateRange,
       loansDetected: newLoans.length,
+      timedOut,
     },
   }
 }

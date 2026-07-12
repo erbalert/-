@@ -57,6 +57,16 @@
   display: none;
 }
 
+.sandboxNote {
+  margin-top: var(--sp-3);
+  padding: 10px 14px;
+  border-radius: var(--r-md);
+  background: var(--status-warning-soft);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
 .loading {
   display: flex;
   flex-direction: column;
