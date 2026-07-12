@@ -1,69 +1,102 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 16px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 16px;
+  gap: var(--sp-3);
 }
 
 .typeToggle {
   display: flex;
-  gap: 6px;
+  gap: 4px;
+  padding: 4px;
+  background: var(--surface-2);
+  border-radius: var(--r-md);
 }
 
 .typeButton {
   flex: 1;
-  padding: 8px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--surface-2);
+  padding: 10px;
+  border: none;
+  border-radius: var(--r-sm);
+  background: transparent;
   color: var(--text-secondary);
-}
-
-.typeButtonActiveIncome {
-  background: var(--income);
-  color: #fff;
-  border-color: var(--income);
+  font-weight: 700;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 
 .typeButtonActiveExpense {
   background: var(--expense);
   color: #fff;
-  border-color: var(--expense);
+  box-shadow: var(--shadow-sm);
+}
+
+.typeButtonActiveIncome {
+  background: var(--income);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
 }
 
 .row {
   display: flex;
-  gap: 8px;
+  gap: var(--sp-3);
 }
 
-.input, .select {
+.row > * {
   flex: 1;
-  padding: 8px 12px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--surface);
   min-width: 0;
 }
 
-.submitButton {
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 16px;
-  font-weight: 500;
+.amountInput {
+  font-size: 1.15rem;
+  font-weight: 700;
 }
 
-.submitButton:disabled {
-  opacity: 0.5;
-  cursor: default;
+.disclosure {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  background: none;
+  border: none;
+  color: var(--brand-1);
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 4px 0;
+}
+
+.disclosureIcon {
+  display: inline-flex;
+  transition: transform var(--dur) var(--ease);
+}
+
+.disclosureOpen {
+  transform: rotate(90deg);
+}
+
+.advanced {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  animation: expand var(--dur) var(--ease);
 }
 
 .hint {
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
+}
+
+@keyframes expand {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 520px) {
+  .row {
+    flex-direction: column;
+  }
 }

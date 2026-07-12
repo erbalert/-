@@ -1,0 +1,26 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--text-muted);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease), transform var(--dur-fast) var(--ease);
+}
+
+.btn:hover {
+  background: var(--surface-2);
+  color: var(--text-primary);
+}
+
+.btn:active {
+  transform: scale(0.92);
+}
+
+.danger:hover {
+  background: var(--expense-soft);
+  color: var(--expense);
+}

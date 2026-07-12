@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useCategories } from '../../hooks/useCategories'
 import { useBudgets } from '../../hooks/useBudgets'
+import Button from '../common/Button'
 import styles from './BudgetForm.module.css'
 
 export default function BudgetForm() {
@@ -50,9 +51,9 @@ export default function BudgetForm() {
         placeholder="Лимит в месяц"
         aria-label="Лимит в месяц"
       />
-      <button className={styles.submitButton} type="submit" disabled={!limit || Number(limit) <= 0}>
-        Добавить бюджет
-      </button>
+      <Button type="submit" disabled={!limit || Number(limit) <= 0}>
+        Добавить
+      </Button>
     </form>
   )
 }

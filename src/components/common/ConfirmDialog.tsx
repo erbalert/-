@@ -1,4 +1,5 @@
 import Modal from './Modal'
+import Button from './Button'
 import styles from './ConfirmDialog.module.css'
 
 interface Props {
@@ -14,12 +15,12 @@ export default function ConfirmDialog({ title, message, confirmLabel = 'Удал
     <Modal title={title} onClose={onCancel}>
       <p className={styles.message}>{message}</p>
       <div className={styles.actions}>
-        <button className={styles.cancelButton} onClick={onCancel}>
+        <Button variant="secondary" onClick={onCancel}>
           Отмена
-        </button>
-        <button className={styles.confirmButton} onClick={onConfirm}>
+        </Button>
+        <Button variant="danger" onClick={onConfirm}>
           {confirmLabel}
-        </button>
+        </Button>
       </div>
     </Modal>
   )

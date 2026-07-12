@@ -4,6 +4,7 @@ import { useCategories } from '../../hooks/useCategories'
 import { useRecurring } from '../../hooks/useRecurring'
 import { addOccurrence, formatDateRu } from '../../utils/date'
 import { formatMoney } from '../../utils/money'
+import IconButton from '../common/IconButton'
 import styles from './RecurringItem.module.css'
 
 const FREQUENCY_LABELS: Record<RecurringRule['frequency'], string> = {
@@ -43,12 +44,13 @@ export default function RecurringItem({ rule, onDelete }: Props) {
         {formatMoney(rule.amount)}
       </span>
       <div className={styles.actions}>
-        <button className={styles.iconButton} onClick={() => toggleActive(rule)} aria-label={rule.active ? 'Приостановить' : 'Возобновить'}>
-          {rule.active ? '⏸️' : '▶️'}
-        </button>
-        <button className={styles.iconButton} onClick={onDelete} aria-label="Удалить">
-          🗑️
-        </button>
+        <IconButton
+          icon={rule.active ? 'pause' : 'play'}
+          label={rule.active ? 'Приостановить' : 'Возобновить'}
+          size={17}
+          onClick={() => toggleActive(rule)}
+        />
+        <IconButton icon="trash" label="Удалить" danger size={17} onClick={onDelete} />
       </div>
     </div>
   )

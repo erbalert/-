@@ -21,6 +21,10 @@ export function useTransactions() {
     dispatch({ type: 'DELETE_TRANSACTION', payload: { id } })
   }
 
+  function restoreTransaction(transaction: Transaction) {
+    dispatch({ type: 'ADD_TRANSACTION', payload: transaction })
+  }
+
   function addTransactionsBulk(items: NewTransaction[]) {
     const transactions: Transaction[] = items.map(item => ({
       ...item,
@@ -48,6 +52,7 @@ export function useTransactions() {
     addTransaction,
     updateTransaction,
     deleteTransaction,
+    restoreTransaction,
     addTransactionsBulk,
     filtered,
   }

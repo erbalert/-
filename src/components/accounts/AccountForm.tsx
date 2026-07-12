@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Button from '../common/Button'
 import styles from './AccountForm.module.css'
 
 interface Props {
@@ -27,9 +28,9 @@ export default function AccountForm({ initialName = '', submitLabel = 'Доба�
         placeholder="Название счёта, например «Карта»"
         aria-label="Название счёта"
       />
-      <button className={styles.submitButton} type="submit" disabled={!name.trim()}>
+      <Button type="submit" disabled={!name.trim()}>
         {submitLabel}
-      </button>
+      </Button>
     </form>
   )
 }

@@ -1,27 +1,22 @@
 .form {
   display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
 }
 
 .input {
   flex: 1;
-  padding: 8px 12px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  min-width: 0;
+  padding: 11px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
   background: var(--surface);
+  color: var(--text-primary);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
 
-.submitButton {
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 16px;
-  white-space: nowrap;
-}
-
-.submitButton:disabled {
-  opacity: 0.5;
-  cursor: default;
+.input:focus {
+  outline: none;
+  border-color: var(--brand-1);
+  box-shadow: 0 0 0 3px var(--brand-soft);
 }

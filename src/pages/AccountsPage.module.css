@@ -1,9 +1,9 @@
 .section {
-  margin-bottom: 32px;
+  margin-bottom: var(--sp-6);
 }
 
 .sectionTitle {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 12px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: var(--sp-3);
 }

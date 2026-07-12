@@ -1,45 +1,33 @@
 .group {
-  margin-bottom: 24px;
+  margin-bottom: var(--sp-5);
 }
 
 .groupTitle {
   font-size: 0.95rem;
-  font-weight: 600;
-  margin-bottom: 8px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: var(--sp-2);
 }
 
 .row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 12px;
+  padding: 10px 14px;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--r-md);
   margin-bottom: 6px;
   background: var(--surface);
+  box-shadow: var(--shadow-sm);
 }
 
 .actions {
   display: flex;
-  gap: 6px;
-}
-
-.iconButton {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  padding: 4px 6px;
-  border-radius: 6px;
-  font-size: 0.9rem;
-}
-
-.iconButton:hover {
-  background: var(--surface-2);
-  color: var(--text-primary);
+  gap: 2px;
 }
 
 .warning {
   color: var(--status-critical);
   font-size: 0.82rem;
-  margin: 2px 0 6px;
+  margin: 2px 0 8px;
 }

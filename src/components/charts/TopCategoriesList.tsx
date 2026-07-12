@@ -15,7 +15,7 @@ export default function TopCategoriesList({ title, data }: Props) {
     <div className={styles.wrap}>
       <h3 className={styles.title}>{title}</h3>
       {data.length === 0 ? (
-        <EmptyState icon="🏆" text="Нет данных за период" />
+        <EmptyState icon="sparkles" text="Нет данных за период" />
       ) : (
         data.map((slice, i) => (
           <div className={styles.item} key={slice.categoryId}>

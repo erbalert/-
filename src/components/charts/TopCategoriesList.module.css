@@ -1,14 +1,15 @@
 .wrap {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 16px;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--sp-5);
 }
 
 .title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin-bottom: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: var(--sp-3);
 }
 
 .item {

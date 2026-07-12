@@ -5,6 +5,7 @@ import { useTransactions } from '../../hooks/useTransactions'
 import { summarizeLoan } from '../../utils/loans'
 import { formatMoney } from '../../utils/money'
 import ConfirmDialog from '../common/ConfirmDialog'
+import Button from '../common/Button'
 import styles from './LoanItem.module.css'
 
 interface Props {
@@ -49,12 +50,12 @@ export default function LoanItem({ loan, selected, onSelect }: Props) {
         </div>
       </div>
       <div className={styles.actions} onClick={e => e.stopPropagation()}>
-        <button className={styles.actionButton} onClick={() => updateLoan({ ...loan, active: !loan.active })}>
+        <Button variant="secondary" size="sm" onClick={() => updateLoan({ ...loan, active: !loan.active })}>
           {loan.active ? 'Закрыть кредит' : 'Возобновить'}
-        </button>
-        <button className={styles.actionButton} onClick={() => setDeleting(true)}>
+        </Button>
+        <Button variant="ghost" size="sm" icon="trash" onClick={() => setDeleting(true)}>
           Удалить
-        </button>
+        </Button>
       </div>
       {blockedMessage && <p className={styles.warning}>{blockedMessage}</p>}
       {deleting && (

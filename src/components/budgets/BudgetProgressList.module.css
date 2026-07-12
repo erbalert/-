@@ -1,43 +1,44 @@
 .item {
-  padding: 12px 14px;
+  padding: 14px 16px;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  margin-bottom: 10px;
+  border-radius: var(--r-md);
+  margin-bottom: var(--sp-2);
   background: var(--surface);
+  box-shadow: var(--shadow-sm);
 }
 
 .topRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: var(--sp-2);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
 }
 
 .amounts {
   font-variant-numeric: tabular-nums;
-  font-size: 0.88rem;
+  font-size: 0.9rem;
+  font-weight: 600;
   color: var(--text-secondary);
-}
-
-.deleteButton {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  padding: 4px 6px;
-  border-radius: 6px;
-  margin-left: 8px;
-}
-
-.deleteButton:hover {
-  background: var(--surface-2);
-  color: var(--text-primary);
 }
 
 .status {
-  margin-top: 6px;
+  margin-top: 8px;
   font-size: 0.82rem;
-  color: var(--text-secondary);
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
+}
+
+.statusWarning {
+  color: var(--status-warning);
+}
+
+.statusCritical {
+  color: var(--status-critical);
 }

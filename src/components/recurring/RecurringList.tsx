@@ -9,7 +9,7 @@ export default function RecurringList() {
   const [deletingId, setDeletingId] = useState<string | null>(null)
 
   if (rules.length === 0) {
-    return <EmptyState icon="🔁" text="Пока нет повторяющихся операций" />
+    return <EmptyState icon="repeat" text="Пока нет повторяющихся операций" />
   }
 
   return (

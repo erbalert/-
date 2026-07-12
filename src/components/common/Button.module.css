@@ -1,0 +1,100 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  border: 1px solid transparent;
+  border-radius: var(--r-md);
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur) var(--ease),
+    background var(--dur) var(--ease), opacity var(--dur) var(--ease);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px) scale(0.99);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* Sizes */
+.sm {
+  padding: 7px 12px;
+  font-size: 0.85rem;
+  border-radius: var(--r-sm);
+}
+
+.lg {
+  padding: 13px 22px;
+  font-size: 1rem;
+}
+
+/* Variants */
+.primary {
+  background: var(--brand-gradient);
+  color: #fff;
+  box-shadow: var(--shadow-brand);
+}
+
+.primary:hover:not(:disabled) {
+  box-shadow: 0 10px 28px rgba(109, 94, 252, 0.45);
+}
+
+.secondary {
+  background: var(--surface-2);
+  color: var(--text-primary);
+  border-color: var(--border);
+}
+
+.secondary:hover:not(:disabled) {
+  background: var(--surface-3);
+}
+
+.ghost {
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.ghost:hover:not(:disabled) {
+  background: var(--surface-2);
+  color: var(--text-primary);
+}
+
+.danger {
+  background: var(--expense);
+  color: #fff;
+}
+
+.danger:hover:not(:disabled) {
+  filter: brightness(1.06);
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+.spinnerDark {
+  border-color: rgba(0, 0, 0, 0.2);
+  border-top-color: currentColor;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

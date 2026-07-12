@@ -3,6 +3,7 @@ import type { Category, TransactionType } from '../../types'
 import { useCategories } from '../../hooks/useCategories'
 import ConfirmDialog from '../common/ConfirmDialog'
 import Modal from '../common/Modal'
+import IconButton from '../common/IconButton'
 import CategoryBadge from './CategoryBadge'
 import CategoryForm from './CategoryForm'
 import styles from './CategoryList.module.css'
@@ -32,12 +33,8 @@ function CategoryGroup({ type, title }: { type: TransactionType; title: string }
         <div className={styles.row} key={category.id}>
           <CategoryBadge category={category} />
           <div className={styles.actions}>
-            <button className={styles.iconButton} onClick={() => setEditing(category)} aria-label="Изменить">
-              ✏️
-            </button>
-            <button className={styles.iconButton} onClick={() => setDeleting(category)} aria-label="Удалить">
-              🗑️
-            </button>
+            <IconButton icon="edit" label="Изменить" onClick={() => setEditing(category)} size={16} />
+            <IconButton icon="trash" label="Удалить" danger onClick={() => setDeleting(category)} size={16} />
           </div>
         </div>
       ))}

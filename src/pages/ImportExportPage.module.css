@@ -1,47 +1,41 @@
 .section {
-  margin-bottom: 32px;
-  padding: 16px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  margin-bottom: var(--sp-4);
 }
 
 .sectionTitle {
   font-size: 1.05rem;
-  font-weight: 600;
-  margin-bottom: 10px;
+  font-weight: 700;
+  margin-bottom: var(--sp-2);
 }
 
 .hint {
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  margin-bottom: 12px;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  margin-bottom: var(--sp-3);
+  line-height: 1.5;
 }
 
-.button {
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 16px;
-  font-weight: 500;
-}
-
-.button:disabled {
-  opacity: 0.5;
-  cursor: default;
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
 }
 
 .summary {
-  margin-top: 14px;
-  padding: 12px;
+  margin-top: var(--sp-3);
+  padding: var(--sp-3);
   background: var(--surface-2);
-  border-radius: 8px;
+  border-radius: var(--r-md);
   font-size: 0.9rem;
 }
 
+.summaryHead {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
 .errorList {
-  margin-top: 8px;
+  margin-top: var(--sp-2);
   max-height: 200px;
   overflow-y: auto;
 }
@@ -52,7 +46,18 @@
   padding: 2px 0;
 }
 
+.hiddenInput {
+  display: none;
+}
+
 .disabledNote {
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.dangerNote {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  margin-top: var(--sp-2);
 }

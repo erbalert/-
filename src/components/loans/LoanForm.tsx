@@ -2,10 +2,13 @@ import { useState } from 'react'
 import type { LoanPaymentType } from '../../types'
 import { useLoans } from '../../hooks/useLoans'
 import { todayIso } from '../../utils/date'
+import Button from '../common/Button'
+import { useToast } from '../common/Toast'
 import styles from './LoanForm.module.css'
 
 export default function LoanForm() {
   const { addLoan } = useLoans()
+  const toast = useToast()
 
   const [name, setName] = useState('')
   const [principal, setPrincipal] = useState('')
@@ -35,6 +38,7 @@ export default function LoanForm() {
     setPrincipal('')
     setInterestRate('')
     setTermMonths('')
+    toast.success('Кредит добавлен')
   }
 
   return (
@@ -96,9 +100,9 @@ export default function LoanForm() {
           <option value="differentiated">Дифференцированные платежи</option>
         </select>
       </div>
-      <button className={styles.submitButton} type="submit" disabled={!name.trim() || !principal || !termMonths}>
+      <Button type="submit" icon="plus" disabled={!name.trim() || !principal || !termMonths}>
         Добавить кредит
-      </button>
+      </Button>
     </form>
   )
 }

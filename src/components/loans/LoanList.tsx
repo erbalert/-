@@ -16,7 +16,7 @@ export default function LoanList() {
   const [selectedId, setSelectedId] = useState<string | null>(null)
 
   if (loans.length === 0) {
-    return <EmptyState icon="📄" text="Пока нет ни одного кредита" />
+    return <EmptyState icon="loan" text="Пока нет ни одного кредита" />
   }
 
   const selected = loans.find(l => l.id === selectedId) ?? null

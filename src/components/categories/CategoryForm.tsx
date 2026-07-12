@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { Category, TransactionType } from '../../types'
 import { CATEGORY_COLOR_PALETTE } from '../../constants'
+import Button from '../common/Button'
 import styles from './CategoryForm.module.css'
 
 interface Props {
@@ -69,9 +70,9 @@ export default function CategoryForm({ initial, fixedType, submitLabel = 'Доб
           />
         ))}
       </div>
-      <button className={styles.submitButton} type="submit" disabled={!name.trim()}>
+      <Button type="submit" size="sm" disabled={!name.trim()}>
         {submitLabel}
-      </button>
+      </Button>
     </form>
   )
 }

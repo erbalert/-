@@ -5,6 +5,10 @@ import { useCategories } from '../hooks/useCategories'
 import { useRecurring } from '../hooks/useRecurring'
 import { todayIso } from '../utils/date'
 import RecurringList from '../components/recurring/RecurringList'
+import PageHeader from '../components/layout/PageHeader'
+import Card from '../components/common/Card'
+import Button from '../components/common/Button'
+import { useToast } from '../components/common/Toast'
 import styles from './RecurringPage.module.css'
 
 const FREQUENCIES: { value: RecurrenceFrequency; label: string }[] = [
@@ -17,6 +21,7 @@ export default function RecurringPage() {
   const { accounts } = useAccounts()
   const { byType } = useCategories()
   const { addRule } = useRecurring()
+  const toast = useToast()
 
   const [type, setType] = useState<TransactionType>('expense')
   const [amount, setAmount] = useState('')
@@ -49,11 +54,13 @@ export default function RecurringPage() {
     })
     setAmount('')
     setNote('')
+    toast.success('Повторяющаяся операция создана')
   }
 
   if (accounts.length === 0 || categories.length === 0) {
     return (
       <div>
+        <PageHeader title="Повторяющиеся" subtitle="Автоматически создаваемые регулярные операции" />
         <p className={styles.hint}>
           Чтобы добавить повторяющуюся операцию, сначала создайте хотя бы один счёт и категорию.
         </p>
@@ -64,6 +71,8 @@ export default function RecurringPage() {
 
   return (
     <div>
+      <PageHeader title="Повторяющиеся" subtitle="Автоматически создаваемые регулярные операции" />
+      <Card style={{ marginBottom: 'var(--sp-5)' }}>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.typeToggle}>
           <button
@@ -140,10 +149,11 @@ export default function RecurringPage() {
           aria-label="Комментарий"
         />
 
-        <button className={styles.submitButton} type="submit" disabled={!amount || Number(amount) <= 0}>
+        <Button type="submit" icon="plus" disabled={!amount || Number(amount) <= 0}>
           Добавить повторяющуюся операцию
-        </button>
+        </Button>
       </form>
+      </Card>
       <RecurringList />
     </div>
   )

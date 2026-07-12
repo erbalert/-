@@ -6,8 +6,42 @@
 
 .content {
   flex: 1;
-  max-width: 1100px;
+  max-width: 1120px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 20px 40px;
+  padding: var(--sp-5) var(--sp-5) var(--sp-7);
+}
+
+@media (max-width: 720px) {
+  .content {
+    padding: var(--sp-4) var(--sp-4) 96px;
+  }
+}
+
+.fab {
+  position: fixed;
+  right: 20px;
+  bottom: calc(74px + env(safe-area-inset-bottom));
+  z-index: 65;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: var(--r-xl);
+  background: var(--brand-gradient);
+  color: #fff;
+  box-shadow: var(--shadow-brand);
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.fab:active {
+  transform: scale(0.92);
+}
+
+@media (max-width: 720px) {
+  .fab {
+    display: flex;
+  }
 }

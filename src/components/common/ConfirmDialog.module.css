@@ -1,26 +1,11 @@
 .message {
   color: var(--text-secondary);
-  margin-bottom: 20px;
+  margin-bottom: var(--sp-5);
   line-height: 1.5;
 }
 
 .actions {
   display: flex;
   justify-content: flex-end;
-  gap: 8px;
-}
-
-.cancelButton {
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 8px 16px;
-}
-
-.confirmButton {
-  background: var(--status-critical);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 16px;
+  gap: var(--sp-2);
 }

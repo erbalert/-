@@ -28,7 +28,7 @@ export default function CategoryPieChart({ title, data }: Props) {
     <div className={styles.wrap}>
       <h3 className={styles.title}>{title}</h3>
       {total === 0 ? (
-        <EmptyState icon="📊" text="Нет данных за период" />
+        <EmptyState icon="dashboard" text="Нет данных за период" />
       ) : (
         <div className={styles.body}>
           <div className={styles.chart}>

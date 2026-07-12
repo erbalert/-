@@ -29,6 +29,7 @@ export type FinanceAction =
       type: 'MATERIALIZE_RECURRING'
       payload: { newTransactions: Transaction[]; updatedRules: RecurringRule[] }
     }
+  | { type: 'REPLACE_STATE'; payload: PersistedState }
   | { type: 'ADD_LOAN'; payload: Loan }
   | { type: 'UPDATE_LOAN'; payload: Loan }
   | { type: 'DELETE_LOAN'; payload: { id: string } }
@@ -54,6 +55,9 @@ export function countLoanUsage(state: PersistedState, loanId: string): number {
 
 export function financeReducer(state: PersistedState, action: FinanceAction): PersistedState {
   switch (action.type) {
+    case 'REPLACE_STATE':
+      return action.payload
+
     case 'ADD_ACCOUNT':
       return { ...state, accounts: [...state.accounts, action.payload] }
 

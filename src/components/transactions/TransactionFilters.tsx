@@ -1,6 +1,7 @@
 import type { TransactionFilters as Filters } from '../../types'
 import { useAccounts } from '../../hooks/useAccounts'
 import { useCategories } from '../../hooks/useCategories'
+import Icon from '../common/Icon'
 import styles from './TransactionFilters.module.css'
 
 interface Props {
@@ -21,7 +22,7 @@ export default function TransactionFilters({ filters, onChange }: Props) {
   return (
     <div className={styles.filters}>
       <select
-        className={styles.select}
+        className={styles.control}
         value={filters.type ?? ''}
         onChange={e => set('type', e.target.value as Filters['type'])}
         aria-label="Тип"
@@ -31,7 +32,7 @@ export default function TransactionFilters({ filters, onChange }: Props) {
         <option value="expense">Расход</option>
       </select>
       <select
-        className={styles.select}
+        className={styles.control}
         value={filters.accountId ?? ''}
         onChange={e => set('accountId', e.target.value)}
         aria-label="Счёт"
@@ -44,7 +45,7 @@ export default function TransactionFilters({ filters, onChange }: Props) {
         ))}
       </select>
       <select
-        className={styles.select}
+        className={styles.control}
         value={filters.categoryId ?? ''}
         onChange={e => set('categoryId', e.target.value)}
         aria-label="Категория"
@@ -57,28 +58,29 @@ export default function TransactionFilters({ filters, onChange }: Props) {
         ))}
       </select>
       <input
-        className={styles.input}
+        className={styles.control}
         type="date"
         value={filters.dateFrom ?? ''}
         onChange={e => set('dateFrom', e.target.value)}
         aria-label="С даты"
       />
       <input
-        className={styles.input}
+        className={styles.control}
         type="date"
         value={filters.dateTo ?? ''}
         onChange={e => set('dateTo', e.target.value)}
         aria-label="По дату"
       />
       <input
-        className={`${styles.input} ${styles.search}`}
+        className={`${styles.control} ${styles.search}`}
         value={filters.search ?? ''}
         onChange={e => set('search', e.target.value)}
         placeholder="Поиск по комментарию"
         aria-label="Поиск"
       />
       {!isEmpty && (
-        <button className={styles.resetButton} onClick={() => onChange({})}>
+        <button className={styles.reset} onClick={() => onChange({})}>
+          <Icon name="close" size={15} />
           Сбросить
         </button>
       )}

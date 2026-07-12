@@ -10,7 +10,7 @@ export default function AccountList() {
     <div>
       <AccountForm onSubmit={addAccount} />
       {accounts.length === 0 ? (
-        <EmptyState icon="🏦" text="Пока нет ни одного счёта" />
+        <EmptyState icon="wallet" text="Пока нет ни одного счёта" />
       ) : (
         accounts.map(account => <AccountItem key={account.id} account={account} />)
       )}

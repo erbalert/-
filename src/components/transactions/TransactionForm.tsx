@@ -5,6 +5,10 @@ import { useAccounts } from '../../hooks/useAccounts'
 import { useCategories } from '../../hooks/useCategories'
 import { useLoans } from '../../hooks/useLoans'
 import { todayIso } from '../../utils/date'
+import Button from '../common/Button'
+import Field from '../common/Field'
+import Icon from '../common/Icon'
+import fieldStyles from '../common/Field.module.css'
 import styles from './TransactionForm.module.css'
 
 interface Props {
@@ -25,13 +29,16 @@ export default function TransactionForm({ initial, submitLabel = 'Добавит
   const [date, setDate] = useState(initial?.date ?? todayIso())
   const [note, setNote] = useState(initial?.note ?? '')
   const [loanId, setLoanId] = useState(initial?.loanId ?? '')
+  const [showAdvanced, setShowAdvanced] = useState(
+    Boolean(initial && (initial.note || initial.loanId || initial.date !== todayIso()))
+  )
 
   const categories = byType(type)
+  const activeLoans = loans.filter(l => l.active)
 
   function handleTypeChange(nextType: TransactionType) {
     setType(nextType)
-    const firstOfType = byType(nextType)[0]
-    setCategoryId(firstOfType?.id ?? '')
+    setCategoryId(byType(nextType)[0]?.id ?? '')
     if (nextType === 'income') setLoanId('')
   }
 
@@ -83,82 +90,106 @@ export default function TransactionForm({ initial, submitLabel = 'Добавит
       </div>
 
       <div className={styles.row}>
-        <input
-          className={styles.input}
-          type="number"
-          min="0"
-          step="0.01"
-          value={amount}
-          onChange={e => setAmount(e.target.value)}
-          placeholder="Сумма"
-          aria-label="Сумма"
-        />
-        <input
-          className={styles.input}
-          type="date"
-          value={date}
-          onChange={e => setDate(e.target.value)}
-          aria-label="Дата"
-        />
-      </div>
-
-      <div className={styles.row}>
-        <select
-          className={styles.select}
-          value={accountId}
-          onChange={e => setAccountId(e.target.value)}
-          aria-label="Счёт"
-        >
-          {accounts.map(a => (
-            <option key={a.id} value={a.id}>
-              {a.name}
-            </option>
-          ))}
-        </select>
-        <select
-          className={styles.select}
-          value={categoryId}
-          onChange={e => setCategoryId(e.target.value)}
-          aria-label="Категория"
-        >
-          {categories.map(c => (
-            <option key={c.id} value={c.id}>
-              {c.icon ? `${c.icon} ` : ''}
-              {c.name}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      {type === 'expense' && loans.length > 0 && (
-        <select
-          className={styles.select}
-          value={loanId}
-          onChange={e => setLoanId(e.target.value)}
-          aria-label="Кредит"
-        >
-          <option value="">Без привязки к кредиту</option>
-          {loans
-            .filter(l => l.active)
-            .map(l => (
-              <option key={l.id} value={l.id}>
-                Кредит: {l.name}
+        <Field label="Сумма">
+          <input
+            className={`${fieldStyles.control} ${styles.amountInput}`}
+            type="number"
+            min="0"
+            step="0.01"
+            value={amount}
+            onChange={e => setAmount(e.target.value)}
+            placeholder="0"
+            aria-label="Сумма"
+            autoFocus
+          />
+        </Field>
+        <Field label="Категория">
+          <select
+            className={fieldStyles.control}
+            value={categoryId}
+            onChange={e => setCategoryId(e.target.value)}
+            aria-label="Категория"
+          >
+            {categories.map(c => (
+              <option key={c.id} value={c.id}>
+                {c.icon ? `${c.icon} ` : ''}
+                {c.name}
               </option>
             ))}
-        </select>
+          </select>
+        </Field>
+      </div>
+
+      <button type="button" className={styles.disclosure} onClick={() => setShowAdvanced(s => !s)}>
+        <span className={`${styles.disclosureIcon} ${showAdvanced ? styles.disclosureOpen : ''}`}>
+          <Icon name="chevronRight" size={16} />
+        </span>
+        Дополнительно
+      </button>
+
+      {showAdvanced && (
+        <div className={styles.advanced}>
+          <div className={styles.row}>
+            <Field label="Дата">
+              <input
+                className={fieldStyles.control}
+                type="date"
+                value={date}
+                onChange={e => setDate(e.target.value)}
+                aria-label="Дата"
+              />
+            </Field>
+            {accounts.length > 1 && (
+              <Field label="Счёт">
+                <select
+                  className={fieldStyles.control}
+                  value={accountId}
+                  onChange={e => setAccountId(e.target.value)}
+                  aria-label="Счёт"
+                >
+                  {accounts.map(a => (
+                    <option key={a.id} value={a.id}>
+                      {a.name}
+                    </option>
+                  ))}
+                </select>
+              </Field>
+            )}
+          </div>
+
+          {type === 'expense' && activeLoans.length > 0 && (
+            <Field label="Привязка к кредиту">
+              <select
+                className={fieldStyles.control}
+                value={loanId}
+                onChange={e => setLoanId(e.target.value)}
+                aria-label="Кредит"
+              >
+                <option value="">Без привязки</option>
+                {activeLoans.map(l => (
+                  <option key={l.id} value={l.id}>
+                    {l.name}
+                  </option>
+                ))}
+              </select>
+            </Field>
+          )}
+
+          <Field label="Комментарий">
+            <input
+              className={fieldStyles.control}
+              value={note}
+              onChange={e => setNote(e.target.value)}
+              placeholder="Необязательно"
+              aria-label="Комментарий"
+            />
+          </Field>
+        </div>
       )}
 
-      <input
-        className={styles.input}
-        value={note}
-        onChange={e => setNote(e.target.value)}
-        placeholder="Комментарий (необязательно)"
-        aria-label="Комментарий"
-      />
-
-      <button className={styles.submitButton} type="submit" disabled={!amount || Number(amount) <= 0}>
+      <Button type="submit" icon="plus" disabled={!amount || Number(amount) <= 0}>
         {submitLabel}
-      </button>
+      </Button>
     </form>
   )
 }

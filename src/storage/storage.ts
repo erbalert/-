@@ -1,7 +1,7 @@
 import { STORAGE_KEY, DEFAULT_EXPENSE_CATEGORIES, DEFAULT_INCOME_CATEGORIES } from '../constants'
 import type { Category, PersistedState } from '../types'
 
-function seedDefaultState(): PersistedState {
+export function seedDefaultState(): PersistedState {
   const categories: Category[] = [...DEFAULT_EXPENSE_CATEGORIES, ...DEFAULT_INCOME_CATEGORIES].map(
     c => ({ ...c, id: crypto.randomUUID() })
   )
