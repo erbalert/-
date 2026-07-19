@@ -1,0 +1,669 @@
+{
+  "targetName": "Offroad SUV 2005",
+  "sourceImage": "reference.png",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "offroad SUV (Jeep Wrangler TJ-style, stylized/low-poly, 10% stretched wheelbase)",
+      "primaryDomain": "object",
+      "formLanguage": [
+        "hard-surface",
+        "mechanical"
+      ],
+      "structureKind": [
+        "compound object",
+        "layered shell",
+        "articulated assembly"
+      ],
+      "motionPotential": [
+        "whole-object transform",
+        "articulated (wheel rotation, door/tailgate swing)",
+        "detachable (spare tire, doors)"
+      ],
+      "materialFamilies": [
+        "metal",
+        "plastic",
+        "rubber",
+        "glass-like"
+      ],
+      "notes": "8-view turnaround sheet (front/rear/side/top/3-4 front/3-4 rear/all-sides lineup/underside silhouette) plus an explicit spec panel: low-poly/stylized, mobile-game target, ~4800 tris, 1024x1024 textures, 2 materials (body+glass) per the sheet's own budget, matte/simplified color palette of 6 swatches. Treat the sheet's stated budget as a target ceiling; the sculpt spec itself will need more than 2 semantic materials (paint/trim/glass/rubber/metal/lenses) even if several share one shader/atlas at implementation time."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 2,
+        "componentCount": 3,
+        "hierarchyDepth": 2,
+        "repetitionDensity": 2,
+        "materialLayerCount": 2,
+        "localDetailDensity": 2,
+        "occlusionRisk": 1,
+        "actionReadinessNeed": 2
+      },
+      "estimatedCounts": {
+        "macroComponents": 4,
+        "mesoComponents": 14,
+        "microFeatureGroups": 10,
+        "materialLayers": 9,
+        "repetitionSystems": 4
+      },
+      "reasoning": [
+        "Silhouette is boxy but interrupted by wheel arches, fender flares, roof/body color break, and the tailgate-mounted spare tire bulge (score 2/3, not a simple box).",
+        "Component count is high: hood, grille, 2x bumper, 4x fender flare, 2x rocker rail, 2x door, roof, tailgate, 2x mirror, 2x headlight, 2x turn signal, 2x taillight, 4x road wheel + spare (score 3/3).",
+        "Hierarchy is 2-3 levels deep: body -> panel (door/fender/bumper) -> local feature (handle/vent/lens), and wheel -> rim/tire -> tread lug / lug nut (score 2/3).",
+        "Repetition systems: 4x identical road wheels + 1 spare, 7 grille slats, tread lug pattern per tire, lug nuts per rim (score 2/3).",
+        "Material layers: body paint, black trim plastic, tinted glass, tire rubber, wheel metal, headlight lens, taillight lens (red), turn-signal lens (amber), roll-cage metal, underbody (score 2/3, 9 distinct surfaces).",
+        "Local detail density: grille slats, tread pattern, rock rails, hood vents, door seams, roll-cage brace seen through glass (score 2/3).",
+        "Occlusion risk is low-moderate: interior mostly hidden but roll cage is inferable through rear quarter glass, underside is shown directly in the lineup panel (score 1/3).",
+        "Action-readiness: 4 wheels need rotation pivots, doors/tailgate need hinge pivots, spare tire is a detachable-style mount -- a real game prop needs these even though the sheet targets a static low-poly asset (score 2/3).",
+        "Overall judgment: many visible subparts, multiple materials, several hierarchy levels, and real repetition systems -> complex tier, not moderate."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "Choose simple/moderate/complex/ultra-complex from observed structure, not from a hardcoded domain."
+    },
+    "unknownsToResolveBeforeImplementation": [],
+    "detailInventory": {
+      "scanMethod": "grid-4x4",
+      "targetMinDetails": 10,
+      "note": "Full inventory maintained at img2threejs-work/detail-inventory.json (18 details, each mapped to a component.localFeatures or material.localOverrides ref); mirrored here.",
+      "details": [
+        {
+          "id": "grille-slats",
+          "kind": "linework",
+          "description": "7 vertical black grille slats between the round headlights, evenly spaced, slightly recessed with dark AO gaps",
+          "region": {
+            "x": 0.38,
+            "y": 0.55,
+            "width": 0.24,
+            "height": 0.35,
+            "units": "normalized"
+          },
+          "scale": "meso, ~4-6cm real-world slat width, grille spans ~40% of front face width",
+          "affects": "grille silhouette and front-face identity",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "grille/grille-slats"
+          },
+          "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r2c3.png",
+          "confidence": 0.95
+        },
+        {
+          "id": "headlights-round",
+          "kind": "bevel",
+          "description": "two circular sealed-beam headlights, white/chrome lens with a raised bezel ring, mounted high on the front fenders flanking the grille",
+          "region": {
+            "x": 0.55,
+            "y": 0.6,
+            "width": 0.2,
+            "height": 0.2,
+            "units": "normalized"
+          },
+          "scale": "micro, ~15% of front-face width each",
+          "affects": "front-face identity, emissive potential",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "headlight-left/lens-bezel"
+          },
+          "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r0c1.png",
+          "confidence": 0.95
+        },
+        {
+          "id": "turn-signal-lenses",
+          "kind": "emissive",
+          "description": "small trapezoidal amber turn-signal/parking lenses set into the front fender corners below the headlights",
+          "region": {
+            "x": 0.15,
+            "y": 0.7,
+            "width": 0.15,
+            "height": 0.12,
+            "units": "normalized"
+          },
+          "scale": "micro, ~5% of front width",
+          "affects": "front corner accent color",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "mat-turnsignal-lens/amber-glow"
+          },
+          "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r2c0.png",
+          "confidence": 0.9
+        },
+        {
+          "id": "taillight-clusters",
+          "kind": "emissive",
+          "description": "rectangular red taillight lenses mounted at the rear corners either side of the tailgate, upper unit plus small lower unit, glossy red",
+          "region": {
+            "x": 0.05,
+            "y": 0.55,
+            "width": 0.15,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "scale": "meso, ~10% of rear-face height",
+          "affects": "rear-face identity color accent",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "mat-taillight-lens/red-gloss"
+          },
+          "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r0c3.png",
+          "confidence": 0.95
+        },
+        {
+          "id": "spare-tire-mount",
+          "kind": "hole",
+          "description": "full-size spare tire and matching dark rim bolted to a swing-out bracket centered on the tailgate, overlapping the rear window sightline",
+          "region": {
+            "x": 0.3,
+            "y": 0.35,
+            "width": 0.4,
+            "height": 0.6,
+            "units": "normalized"
+          },
+          "scale": "macro, tire diameter matches road wheels",
+          "affects": "rear silhouette, adds ~1 wheel-diameter of rear overhang",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "tailgate/spare-tire-mount-bracket"
+          },
+          "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r0c3.png",
+          "confidence": 0.95
+        },
+        {
+          "id": "roll-cage-x-brace",
+          "kind": "linework",
+          "description": "black roll-cage/roof-support tubing visible through the rear quarter windows as a diagonal X cross-brace, plus a straight bar along the header",
+          "region": {
+            "x": 0.55,
+            "y": 0.3,
+            "width": 0.25,
+            "height": 0.4,
+            "units": "normalized"
+          },
+          "scale": "meso, tube reads ~3-5% of window height in thickness",
+          "affects": "greenhouse identity seen through glass; must render behind tinted glass material",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "rollcage-brace-left"
+          },
+          "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r1c2.png",
+          "confidence": 0.85
+        },
+        {
+          "id": "wheel-tread-lugs",
+          "kind": "fastener",
+          "description": "aggressive all-terrain tire tread: chunky repeated lug blocks around the tire circumference and across the tread face, visible in top and side views",
+          "region": {
+            "x": 0.0,
+            "y": 0.0,
+            "width": 0.6,
+            "height": 0.6,
+            "units": "normalized"
+          },
+          "scale": "micro, lug pitch ~8-10% of tire diameter",
+          "affects": "wheel silhouette read at all viewing distances",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "wheel-front-left/tread-lugs-fl"
+          },
+          "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r2c2.png",
+          "confidence": 0.9
+        },
+        {
+          "id": "wheel-rim-spokes",
+          "kind": "bevel",
+          "description": "dark gunmetal alloy wheel with 5-6 spoke pattern and a visible center hub cap, recessed lug nuts at each spoke root",
+          "region": {
+            "x": 0.0,
+            "y": 0.0,
+            "width": 0.55,
+            "height": 0.55,
+            "units": "normalized"
+          },
+          "scale": "meso, hub ~35% of wheel diameter",
+          "affects": "wheel identity distinguishable from tire",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "wheel-front-left/rim-spokes-fl"
+          },
+          "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r2c2.png",
+          "confidence": 0.85
+        },
+        {
+          "id": "fender-flares",
+          "kind": "seam",
+          "description": "wide flat-black plastic fender flares wrap over all four wheel openings, distinct matte-black material break from the tan body paint with a visible panel seam",
+          "region": {
+            "x": 0.0,
+            "y": 0.4,
+            "width": 0.3,
+            "height": 0.5,
+            "units": "normalized"
+          },
+          "scale": "meso, flare width ~10-12% of vehicle height",
+          "affects": "silhouette bulge at each wheel well, body two-tone color break",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "fender-front-left/flare-seam-fl"
+          },
+          "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r1c2.png",
+          "confidence": 0.9
+        },
+        {
+          "id": "rocker-rock-rail",
+          "kind": "ridge",
+          "description": "black tubular rock rail / rocker panel running along the bottom of the body between the front and rear wheel openings",
+          "region": {
+            "x": 0.0,
+            "y": 0.0,
+            "width": 0.5,
+            "height": 0.3,
+            "units": "normalized"
+          },
+          "scale": "meso, spans full wheelbase length, ~5% of body height thick",
+          "affects": "lower body silhouette and two-tone break",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "rocker-panel-left/rock-rail-left"
+          },
+          "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r2c1.png",
+          "confidence": 0.85
+        },
+        {
+          "id": "door-handle-seam",
+          "kind": "seam",
+          "description": "single door per side (2-door body) with a visible vertical door-gap seam and a small recessed black paddle door handle at mid-height",
+          "region": {
+            "x": 0.5,
+            "y": 0.6,
+            "width": 0.4,
+            "height": 0.35,
+            "units": "normalized"
+          },
+          "scale": "micro handle, meso seam spanning door height",
+          "affects": "door identity and panel breakup on flank",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "door-left/door-handle-left"
+          },
+          "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r1c1.png",
+          "confidence": 0.85
+        },
+        {
+          "id": "side-mirrors",
+          "kind": "bevel",
+          "description": "boxy black side mirrors mounted on the A-pillar/front fender, angled housing with a flat mirror face",
+          "region": {
+            "x": 0.25,
+            "y": 0.55,
+            "width": 0.15,
+            "height": 0.15,
+            "units": "normalized"
+          },
+          "scale": "micro, ~4% of body length",
+          "affects": "front-quarter silhouette detail",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "mirror-left/mirror-housing-bevel-left"
+          },
+          "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r1c1.png",
+          "confidence": 0.9
+        },
+        {
+          "id": "wiper-arms",
+          "kind": "linework",
+          "description": "two black windshield wiper arms resting diagonally at the base of the windshield, visible from front and top views",
+          "region": {
+            "x": 0.25,
+            "y": 0.35,
+            "width": 0.5,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "scale": "micro, thin linear elements",
+          "affects": "windshield-base identity detail",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "windshield-frame/wiper-arms"
+          },
+          "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r2c3.png",
+          "confidence": 0.85
+        },
+        {
+          "id": "hood-vents",
+          "kind": "groove",
+          "description": "pair of small dark hood vent/latch bumps near the windshield cowl, plus faint louvered vent lines on the hood top visible from the top view",
+          "region": {
+            "x": 0.3,
+            "y": 0.5,
+            "width": 0.4,
+            "height": 0.2,
+            "units": "normalized"
+          },
+          "scale": "micro, low-relief",
+          "affects": "hood top surface break in top-down silhouette",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "hood/hood-vents"
+          },
+          "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r2c3.png",
+          "confidence": 0.75
+        },
+        {
+          "id": "front-bumper-tow-hooks",
+          "kind": "hole",
+          "description": "chunky black front bumper with small dark tow-hook loops visible near the bumper ends beneath the turn signals",
+          "region": {
+            "x": 0.0,
+            "y": 0.75,
+            "width": 0.4,
+            "height": 0.25,
+            "units": "normalized"
+          },
+          "scale": "micro",
+          "affects": "front bumper mass and lower silhouette",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "bumper-front/tow-hook-left"
+          },
+          "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r2c0.png",
+          "confidence": 0.8
+        },
+        {
+          "id": "roof-color-break",
+          "kind": "seam",
+          "description": "black hardtop roof (soft-top style dome) sits as a distinct matte-black mass over the tan body with a clear seam/color break at the beltline",
+          "region": {
+            "x": 0.3,
+            "y": 0.0,
+            "width": 0.5,
+            "height": 0.4,
+            "units": "normalized"
+          },
+          "scale": "macro, roof spans full cabin length",
+          "affects": "two-tone silhouette identity (tan body / black roof)",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "mat-trim-black/roof-panel"
+          },
+          "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r1c2.png",
+          "confidence": 0.95
+        },
+        {
+          "id": "underbody-silhouette",
+          "kind": "contour",
+          "description": "flat, simplified black underbody/chassis visible in the bottom-view silhouette of the lineup, ladder-frame proportions, no exposed driveshaft detail (matches 'all shapes simplified' note)",
+          "region": {
+            "x": 0.5,
+            "y": 0.3,
+            "width": 0.4,
+            "height": 0.5,
+            "units": "normalized"
+          },
+          "scale": "macro",
+          "affects": "confirms low-poly simplification intent for hidden underside",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "chassis-underbody"
+          },
+          "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r3c2.png",
+          "confidence": 0.7
+        },
+        {
+          "id": "color-palette-swatches",
+          "kind": "decal",
+          "description": "spec-sheet swatches confirm exact palette: tan/khaki body, near-black trim, two mid-grays (rim/shadow), near-black roof, and a saturated red accent for taillights",
+          "region": {
+            "x": 0.0,
+            "y": 0.3,
+            "width": 0.6,
+            "height": 0.15,
+            "units": "normalized"
+          },
+          "scale": "n/a (reference legend, not geometry)",
+          "affects": "authoritative albedo source for all body/trim/wheel/taillight materials",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "mat-body-paint/albedo-swatch"
+          },
+          "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r1c0.png",
+          "confidence": 1.0
+        }
+      ]
+    },
+    "anatomy": {
+      "applies": false,
+      "styleHeads": 0.0,
+      "proportions": {
+        "headUnit": 0.0,
+        "torso": 0.0,
+        "legs": 0.0,
+        "shoulderWidth": 0.0,
+        "hipWidth": 0.0
+      },
+      "pose": {
+        "type": "unassessed",
+        "jointAngles": {}
+      },
+      "faceLandmarks": {
+        "eyeLine": 0.0,
+        "eyeSpacing": 0.0,
+        "noseBase": 0.0,
+        "mouthLine": 0.0,
+        "hairline": 0.0
+      },
+      "features": [],
+      "confidence": 0.0,
+      "note": "Only meaningful when objectClass.primaryDomain is character or hybrid. Set applies=true and fill from scripts/extract_reference_landmarks.py. See references/character-reconstruction.md and references/likeness-maximization.md."
+    },
+    "sourceImage": "reference.png"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "Silhouette reads unmistakably as a boxy 2-door Wrangler-style offroad SUV from all 8 reference viewpoints (front, rear, side, top, 3/4 front, 3/4 rear, lineup, underside).",
+      "Two-tone color break (tan/khaki body vs matte-black roof/trim) and the 6-swatch palette from the spec panel are reproduced in albedo.",
+      "Grille (7 slats), round headlights + amber turn signals, red taillight clusters, tailgate-mounted spare tire, roll-cage X-brace seen through rear glass, and 4x tread-patterned wheels with spoked rims are all present and placed at reference proportions.",
+      "Wheels, doors, and tailgate are on real pivots/sockets (action-ready), not fused into one static mesh."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 4,
+      "mesoComponents": 14,
+      "microFeatureGroups": 10,
+      "materialLayers": 9,
+      "repetitionSystems": 4,
+      "reviewViewpoints": 6
+    },
+    "featureGroups": [
+      {
+        "id": "body-silhouette-and-two-tone",
+        "name": "Boxy body silhouette + tan/black two-tone color break",
+        "required": true,
+        "qualityCriteria": [
+          "Body mass reads as a flat-hood, vertical-windshield, boxy SUV with a distinct black hardtop roof mass sitting on a tan/khaki lower body.",
+          "Roof-to-body color break sits at the beltline as in reference, not blended."
+        ],
+        "evidenceRefs": [
+          "reference.png#side-view",
+          "reference.png#front-view"
+        ],
+        "failureModes": [
+          "model reads as a generic rounded car instead of a flat-panel Wrangler-style box",
+          "roof and body share one color/material"
+        ]
+      },
+      {
+        "id": "front-face-identity",
+        "name": "Grille, round headlights, amber turn signals",
+        "required": true,
+        "qualityCriteria": [
+          "7-slat vertical grille centered between two circular headlights with raised bezels.",
+          "Trapezoidal amber turn-signal lenses sit at the fender corners below the headlights."
+        ],
+        "evidenceRefs": [
+          "reference.png#front-view",
+          "reference.png#3-4-front-view"
+        ],
+        "failureModes": [
+          "grille is a flat painted texture instead of repeated slat geometry",
+          "headlights are square/generic instead of round sealed-beam"
+        ]
+      },
+      {
+        "id": "rear-face-identity",
+        "name": "Taillights, tailgate, spare tire",
+        "required": true,
+        "qualityCriteria": [
+          "Rectangular red taillight clusters at both rear corners.",
+          "Full-size spare tire + matching rim mounted on the tailgate, contributing to rear silhouette overhang."
+        ],
+        "evidenceRefs": [
+          "reference.png#rear-view",
+          "reference.png#3-4-rear-view"
+        ],
+        "failureModes": [
+          "spare tire is missing or painted onto the tailgate instead of modeled as a mounted wheel",
+          "taillights are the wrong color or shape"
+        ]
+      },
+      {
+        "id": "greenhouse-roll-cage",
+        "name": "Roll-cage X-brace visible through rear quarter glass",
+        "required": true,
+        "qualityCriteria": [
+          "A dark X-shaped brace plus header bar is visible through the tinted rear quarter windows, not a flat dark window texture."
+        ],
+        "evidenceRefs": [
+          "reference.png#side-view",
+          "reference.png#rear-view"
+        ],
+        "failureModes": [
+          "windows render as opaque or featureless dark panels with no interior structure hint"
+        ]
+      },
+      {
+        "id": "wheel-tire-system",
+        "name": "4x repeated road wheels + spare: tread pattern + spoked rim",
+        "required": true,
+        "qualityCriteria": [
+          "All 4 road wheels (and the spare) share one instanced/repeated wheel assembly: chunky all-terrain tread lugs + 5-6 spoke dark rim + lug nuts.",
+          "Wheels sit on rotation pivots at the axle centerline."
+        ],
+        "evidenceRefs": [
+          "reference.png#side-view",
+          "reference.png#top-view"
+        ],
+        "failureModes": [
+          "wheels are smooth cylinders with no tread or spoke detail",
+          "each wheel is authored as an unrelated one-off mesh instead of a shared repetition system"
+        ]
+      },
+      {
+        "id": "lower-body-hardware",
+        "name": "Fender flares, rocker rails, front/rear bumpers with tow hooks",
+        "required": true,
+        "qualityCriteria": [
+          "Matte-black fender flares wrap all 4 wheel openings as a distinct material break from the body paint.",
+          "Rocker rail runs the full wheelbase between wheel openings; front/rear bumpers are chunky black with visible tow-hook loops."
+        ],
+        "evidenceRefs": [
+          "reference.png#side-view",
+          "reference.png#3-4-front-view"
+        ],
+        "failureModes": [
+          "fender flares are the same color as the body (missing material break)",
+          "bumpers are flush with the body instead of a separate protruding component"
+        ]
+      },
+      {
+        "id": "cab-hardware",
+        "name": "Doors, mirrors, wipers, hood vents",
+        "required": true,
+        "qualityCriteria": [
+          "Single door per side with a visible seam and a recessed paddle handle; boxy side mirrors on the A-pillar; two wiper arms at the windshield base; small hood vent bumps near the cowl."
+        ],
+        "evidenceRefs": [
+          "reference.png#side-view",
+          "reference.png#top-view"
+        ],
+        "failureModes": [
+          "door/handle/mirror/wiper details are omitted, leaving a featureless body flank"
+        ]
+      },
+      {
+        "id": "attachment-joint-correctness",
+        "name": "Attachment and joint correctness",
+        "required": true,
+        "qualityCriteria": [
+          "Every wheel, door, tailgate, spare-tire mount, and mirror has an attachment contract with parent socket, localStart/localEnd, contact type, embed/overlap, and gap tolerance."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "a wheel or spare tire floats away from its wheel well/mount bracket",
+          "door/tailgate pivots are centered on the part instead of on the hinge line"
+        ]
+      },
+      {
+        "id": "surface-material-response",
+        "name": "Surface material response",
+        "required": true,
+        "qualityCriteria": [
+          "9 independent materials (body paint, black trim, glass, tire rubber, wheel metal, headlight lens, taillight lens, turn-signal lens, roll-cage metal) with independent albedo/roughness, not one texture reused across channels.",
+          "Macro (panel color blocks), meso (flare/rail seams, grille slats), and micro (tread lugs, lug nuts, bezel bevels) frequency bands are all represented."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "surface looks like flat plastic with no roughness variation between paint/trim/glass/rubber",
+          "local material variation is missing or not tied to image evidence"
+        ]
+      },
+      {
+        "id": "reference-lookdev",
+        "name": "Reference color, material, and lighting response",
+        "required": true,
+        "qualityCriteria": [
+          "Albedo palette matches the reference's 6-swatch legend (tan body, near-black trim/roof, 2 mid-grays, near-black, red).",
+          "Lighting-pass names key/fill/rim or environment light, exposure, tone mapping, background, and contact shadow behavior."
+        ],
+        "evidenceRefs": [
+          "reference.png#color-palette"
+        ],
+        "failureModes": [
+          "colors are a generic average instead of the reference-observed palette",
+          "lighting is evenly ambient and cannot reproduce the source value range"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "silhouette and negative-space delta (wheel arch gaps, greenhouse shape, spare-tire overhang)",
+      "component hierarchy depth delta (panel/door/bumper/fender separation)",
+      "repetition density and distribution delta (4x wheels, grille slats, tread lugs, lug nuts)",
+      "material albedo/roughness/normal response delta (paint vs trim vs glass vs rubber vs metal vs lenses)",
+      "local feature placement and scale delta (headlight/taillight/mirror/handle positions)"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity."
+    ]
+  },
+  "authoringInstruction": "Fill observed object class, complexity reasoning, featureGroups, visualDeltaChecks, and unknowns before generating or implementing ObjectSculptSpec."
+}

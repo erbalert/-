@@ -1,0 +1,83 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.866,
+  "estimatedFidelity": 0.866,
+  "targetThreshold": 0.7,
+  "materialId": "mat-body-paint",
+  "sourceImage": "/home/user/-/img2threejs-work/pbr-crops/crop-body-paint.png",
+  "outDir": "/home/user/-/img2threejs-work/pbr-maps/body-paint",
+  "palette": [
+    "#797065",
+    "#81786C",
+    "#2C2B2A",
+    "#554F46",
+    "#938A7D"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "/home/user/-/img2threejs-work/pbr-maps/body-paint/mat-body-paint_albedo.png",
+      "url": "mat-body-paint_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/home/user/-/img2threejs-work/pbr-maps/body-paint/mat-body-paint_roughness.png",
+      "url": "mat-body-paint_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/home/user/-/img2threejs-work/pbr-maps/body-paint/mat-body-paint_height.png",
+      "url": "mat-body-paint_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/home/user/-/img2threejs-work/pbr-maps/body-paint/mat-body-paint_normal.png",
+      "url": "mat-body-paint_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/home/user/-/img2threejs-work/pbr-maps/body-paint/mat-body-paint_ao.png",
+      "url": "mat-body-paint_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 170,
+    "sourceHeight": 50,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 170,
+      "height": 50
+    },
+    "mask": {
+      "backgroundColor": "#80776D",
+      "backgroundNoise": 13.304,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.3776
+    },
+    "mapStats": {
+      "valueRange": 0.333,
+      "heightP90Gradient": 0.0185,
+      "roughnessBase": 0.685,
+      "roughnessVariation": 0.05,
+      "normalStrength": 0.178,
+      "blurRadius": 21
+    },
+    "palette": [
+      "#797065",
+      "#81786C",
+      "#2C2B2A",
+      "#554F46",
+      "#938A7D"
+    ]
+  },
+  "warnings": [],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

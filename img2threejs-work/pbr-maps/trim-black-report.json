@@ -1,0 +1,85 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.757,
+  "estimatedFidelity": 0.757,
+  "targetThreshold": 0.7,
+  "materialId": "mat-trim-black",
+  "sourceImage": "/home/user/-/img2threejs-work/pbr-crops/crop-black-trim-d.png",
+  "outDir": "/home/user/-/img2threejs-work/pbr-maps/trim-black",
+  "palette": [
+    "#0D0D0C",
+    "#161615",
+    "#10100F",
+    "#131312",
+    "#080807"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "/home/user/-/img2threejs-work/pbr-maps/trim-black/mat-trim-black_albedo.png",
+      "url": "mat-trim-black_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/home/user/-/img2threejs-work/pbr-maps/trim-black/mat-trim-black_roughness.png",
+      "url": "mat-trim-black_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/home/user/-/img2threejs-work/pbr-maps/trim-black/mat-trim-black_height.png",
+      "url": "mat-trim-black_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/home/user/-/img2threejs-work/pbr-maps/trim-black/mat-trim-black_normal.png",
+      "url": "mat-trim-black_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/home/user/-/img2threejs-work/pbr-maps/trim-black/mat-trim-black_ao.png",
+      "url": "mat-trim-black_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 130,
+    "sourceHeight": 15,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 1,
+      "width": 130,
+      "height": 8
+    },
+    "mask": {
+      "backgroundColor": "#252524",
+      "backgroundNoise": 3.464,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.1072
+    },
+    "mapStats": {
+      "valueRange": 0.08,
+      "heightP90Gradient": 0.01031,
+      "roughnessBase": 0.68,
+      "roughnessVariation": 0.05,
+      "normalStrength": 0.168,
+      "blurRadius": 21
+    },
+    "palette": [
+      "#0D0D0C",
+      "#161615",
+      "#10100F",
+      "#131312",
+      "#080807"
+    ]
+  },
+  "warnings": [
+    "low value range weakens height/roughness inference"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

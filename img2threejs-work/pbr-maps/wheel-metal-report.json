@@ -1,0 +1,83 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.853,
+  "estimatedFidelity": 0.853,
+  "targetThreshold": 0.7,
+  "materialId": "mat-wheel-metal",
+  "sourceImage": "/home/user/-/img2threejs-work/pbr-crops/crop-wheel-metal.png",
+  "outDir": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal",
+  "palette": [
+    "#090807",
+    "#11100E",
+    "#030202",
+    "#1B1B19",
+    "#7C7F7E"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal/mat-wheel-metal_albedo.png",
+      "url": "mat-wheel-metal_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal/mat-wheel-metal_roughness.png",
+      "url": "mat-wheel-metal_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal/mat-wheel-metal_height.png",
+      "url": "mat-wheel-metal_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal/mat-wheel-metal_normal.png",
+      "url": "mat-wheel-metal_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal/mat-wheel-metal_ao.png",
+      "url": "mat-wheel-metal_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 50,
+    "sourceHeight": 50,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 44,
+      "height": 50
+    },
+    "mask": {
+      "backgroundColor": "#292727",
+      "backgroundNoise": 23.77,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.1996
+    },
+    "mapStats": {
+      "valueRange": 0.3925,
+      "heightP90Gradient": 0.01514,
+      "roughnessBase": 0.681,
+      "roughnessVariation": 0.05,
+      "normalStrength": 0.174,
+      "blurRadius": 21
+    },
+    "palette": [
+      "#090807",
+      "#11100E",
+      "#030202",
+      "#1B1B19",
+      "#7C7F7E"
+    ]
+  },
+  "warnings": [],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

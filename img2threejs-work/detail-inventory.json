@@ -1,0 +1,371 @@
+{
+  "sourceImage": "/home/user/-/img2threejs-work/reference.png",
+  "zonesDir": "/home/user/-/img2threejs-work/zones",
+  "detailInventory": {
+    "scanMethod": "grid-4x4",
+    "targetMinDetails": 10,
+    "details": [
+      {
+        "id": "grille-slats",
+        "kind": "linework",
+        "description": "7 vertical black grille slats between the round headlights, evenly spaced, slightly recessed with dark AO gaps",
+        "region": {
+          "x": 0.38,
+          "y": 0.55,
+          "width": 0.24,
+          "height": 0.35,
+          "units": "normalized"
+        },
+        "scale": "meso, ~4-6cm real-world slat width, grille spans ~40% of front face width",
+        "affects": "grille silhouette and front-face identity",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "grille/grille-slats"
+        },
+        "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r2c3.png",
+        "confidence": 0.95
+      },
+      {
+        "id": "headlights-round",
+        "kind": "bevel",
+        "description": "two circular sealed-beam headlights, white/chrome lens with a raised bezel ring, mounted high on the front fenders flanking the grille",
+        "region": {
+          "x": 0.55,
+          "y": 0.6,
+          "width": 0.2,
+          "height": 0.2,
+          "units": "normalized"
+        },
+        "scale": "micro, ~15% of front-face width each",
+        "affects": "front-face identity, emissive potential",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "headlight-left/lens-bezel"
+        },
+        "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r0c1.png",
+        "confidence": 0.95
+      },
+      {
+        "id": "turn-signal-lenses",
+        "kind": "emissive",
+        "description": "small trapezoidal amber turn-signal/parking lenses set into the front fender corners below the headlights",
+        "region": {
+          "x": 0.15,
+          "y": 0.7,
+          "width": 0.15,
+          "height": 0.12,
+          "units": "normalized"
+        },
+        "scale": "micro, ~5% of front width",
+        "affects": "front corner accent color",
+        "mapsTo": {
+          "type": "material.localOverrides",
+          "ref": "mat-turnsignal-lens/amber-glow"
+        },
+        "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r2c0.png",
+        "confidence": 0.9
+      },
+      {
+        "id": "taillight-clusters",
+        "kind": "emissive",
+        "description": "rectangular red taillight lenses mounted at the rear corners either side of the tailgate, upper unit plus small lower unit, glossy red",
+        "region": {
+          "x": 0.05,
+          "y": 0.55,
+          "width": 0.15,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "meso, ~10% of rear-face height",
+        "affects": "rear-face identity color accent",
+        "mapsTo": {
+          "type": "material.localOverrides",
+          "ref": "mat-taillight-lens/red-gloss"
+        },
+        "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r0c3.png",
+        "confidence": 0.95
+      },
+      {
+        "id": "spare-tire-mount",
+        "kind": "hole",
+        "description": "full-size spare tire and matching dark rim bolted to a swing-out bracket centered on the tailgate, overlapping the rear window sightline",
+        "region": {
+          "x": 0.3,
+          "y": 0.35,
+          "width": 0.4,
+          "height": 0.6,
+          "units": "normalized"
+        },
+        "scale": "macro, tire diameter matches road wheels",
+        "affects": "rear silhouette, adds ~1 wheel-diameter of rear overhang",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "tailgate/spare-tire-mount-bracket"
+        },
+        "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r0c3.png",
+        "confidence": 0.95
+      },
+      {
+        "id": "roll-cage-x-brace",
+        "kind": "linework",
+        "description": "black roll-cage/roof-support tubing visible through the rear quarter windows as a diagonal X cross-brace, plus a straight bar along the header",
+        "region": {
+          "x": 0.55,
+          "y": 0.3,
+          "width": 0.25,
+          "height": 0.4,
+          "units": "normalized"
+        },
+        "scale": "meso, tube reads ~3-5% of window height in thickness",
+        "affects": "greenhouse identity seen through glass; must render behind tinted glass material",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "rollcage-brace-left"
+        },
+        "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r1c2.png",
+        "confidence": 0.85
+      },
+      {
+        "id": "wheel-tread-lugs",
+        "kind": "fastener",
+        "description": "aggressive all-terrain tire tread: chunky repeated lug blocks around the tire circumference and across the tread face, visible in top and side views",
+        "region": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 0.6,
+          "height": 0.6,
+          "units": "normalized"
+        },
+        "scale": "micro, lug pitch ~8-10% of tire diameter",
+        "affects": "wheel silhouette read at all viewing distances",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "wheel-front-left/tread-lugs-fl"
+        },
+        "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r2c2.png",
+        "confidence": 0.9
+      },
+      {
+        "id": "wheel-rim-spokes",
+        "kind": "bevel",
+        "description": "dark gunmetal alloy wheel with 5-6 spoke pattern and a visible center hub cap, recessed lug nuts at each spoke root",
+        "region": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 0.55,
+          "height": 0.55,
+          "units": "normalized"
+        },
+        "scale": "meso, hub ~35% of wheel diameter",
+        "affects": "wheel identity distinguishable from tire",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "wheel-front-left/rim-spokes-fl"
+        },
+        "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r2c2.png",
+        "confidence": 0.85
+      },
+      {
+        "id": "fender-flares",
+        "kind": "seam",
+        "description": "wide flat-black plastic fender flares wrap over all four wheel openings, distinct matte-black material break from the tan body paint with a visible panel seam",
+        "region": {
+          "x": 0.0,
+          "y": 0.4,
+          "width": 0.3,
+          "height": 0.5,
+          "units": "normalized"
+        },
+        "scale": "meso, flare width ~10-12% of vehicle height",
+        "affects": "silhouette bulge at each wheel well, body two-tone color break",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "fender-front-left/flare-seam-fl"
+        },
+        "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r1c2.png",
+        "confidence": 0.9
+      },
+      {
+        "id": "rocker-rock-rail",
+        "kind": "ridge",
+        "description": "black tubular rock rail / rocker panel running along the bottom of the body between the front and rear wheel openings",
+        "region": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 0.5,
+          "height": 0.3,
+          "units": "normalized"
+        },
+        "scale": "meso, spans full wheelbase length, ~5% of body height thick",
+        "affects": "lower body silhouette and two-tone break",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "rocker-panel-left/rock-rail-left"
+        },
+        "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r2c1.png",
+        "confidence": 0.85
+      },
+      {
+        "id": "door-handle-seam",
+        "kind": "seam",
+        "description": "single door per side (2-door body) with a visible vertical door-gap seam and a small recessed black paddle door handle at mid-height",
+        "region": {
+          "x": 0.5,
+          "y": 0.6,
+          "width": 0.4,
+          "height": 0.35,
+          "units": "normalized"
+        },
+        "scale": "micro handle, meso seam spanning door height",
+        "affects": "door identity and panel breakup on flank",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "door-left/door-handle-left"
+        },
+        "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r1c1.png",
+        "confidence": 0.85
+      },
+      {
+        "id": "side-mirrors",
+        "kind": "bevel",
+        "description": "boxy black side mirrors mounted on the A-pillar/front fender, angled housing with a flat mirror face",
+        "region": {
+          "x": 0.25,
+          "y": 0.55,
+          "width": 0.15,
+          "height": 0.15,
+          "units": "normalized"
+        },
+        "scale": "micro, ~4% of body length",
+        "affects": "front-quarter silhouette detail",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "mirror-left/mirror-housing-bevel-left"
+        },
+        "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r1c1.png",
+        "confidence": 0.9
+      },
+      {
+        "id": "wiper-arms",
+        "kind": "linework",
+        "description": "two black windshield wiper arms resting diagonally at the base of the windshield, visible from front and top views",
+        "region": {
+          "x": 0.25,
+          "y": 0.35,
+          "width": 0.5,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "micro, thin linear elements",
+        "affects": "windshield-base identity detail",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "windshield-frame/wiper-arms"
+        },
+        "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r2c3.png",
+        "confidence": 0.85
+      },
+      {
+        "id": "hood-vents",
+        "kind": "groove",
+        "description": "pair of small dark hood vent/latch bumps near the windshield cowl, plus faint louvered vent lines on the hood top visible from the top view",
+        "region": {
+          "x": 0.3,
+          "y": 0.5,
+          "width": 0.4,
+          "height": 0.2,
+          "units": "normalized"
+        },
+        "scale": "micro, low-relief",
+        "affects": "hood top surface break in top-down silhouette",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "hood/hood-vents"
+        },
+        "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r2c3.png",
+        "confidence": 0.75
+      },
+      {
+        "id": "front-bumper-tow-hooks",
+        "kind": "hole",
+        "description": "chunky black front bumper with small dark tow-hook loops visible near the bumper ends beneath the turn signals",
+        "region": {
+          "x": 0.0,
+          "y": 0.75,
+          "width": 0.4,
+          "height": 0.25,
+          "units": "normalized"
+        },
+        "scale": "micro",
+        "affects": "front bumper mass and lower silhouette",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "bumper-front/tow-hook-left"
+        },
+        "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r2c0.png",
+        "confidence": 0.8
+      },
+      {
+        "id": "roof-color-break",
+        "kind": "seam",
+        "description": "black hardtop roof (soft-top style dome) sits as a distinct matte-black mass over the tan body with a clear seam/color break at the beltline",
+        "region": {
+          "x": 0.3,
+          "y": 0.0,
+          "width": 0.5,
+          "height": 0.4,
+          "units": "normalized"
+        },
+        "scale": "macro, roof spans full cabin length",
+        "affects": "two-tone silhouette identity (tan body / black roof)",
+        "mapsTo": {
+          "type": "material.localOverrides",
+          "ref": "mat-trim-black/roof-panel"
+        },
+        "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r1c2.png",
+        "confidence": 0.95
+      },
+      {
+        "id": "underbody-silhouette",
+        "kind": "contour",
+        "description": "flat, simplified black underbody/chassis visible in the bottom-view silhouette of the lineup, ladder-frame proportions, no exposed driveshaft detail (matches 'all shapes simplified' note)",
+        "region": {
+          "x": 0.5,
+          "y": 0.3,
+          "width": 0.4,
+          "height": 0.5,
+          "units": "normalized"
+        },
+        "scale": "macro",
+        "affects": "confirms low-poly simplification intent for hidden underside",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "chassis-underbody"
+        },
+        "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r3c2.png",
+        "confidence": 0.7
+      },
+      {
+        "id": "color-palette-swatches",
+        "kind": "decal",
+        "description": "spec-sheet swatches confirm exact palette: tan/khaki body, near-black trim, two mid-grays (rim/shadow), near-black roof, and a saturated red accent for taillights",
+        "region": {
+          "x": 0.0,
+          "y": 0.3,
+          "width": 0.6,
+          "height": 0.15,
+          "units": "normalized"
+        },
+        "scale": "n/a (reference legend, not geometry)",
+        "affects": "authoritative albedo source for all body/trim/wheel/taillight materials",
+        "mapsTo": {
+          "type": "material.localOverrides",
+          "ref": "mat-body-paint/albedo-swatch"
+        },
+        "evidenceRef": "/home/user/-/img2threejs-work/zones/zone-r1c0.png",
+        "confidence": 1.0
+      }
+    ]
+  },
+  "authoringInstruction": "Open each zone crop under zonesDir and replace every detail stub's kind, description, scale, affects, mapsTo, and confidence with what is actually observed. Add more detail entries per zone if a single zone contains multiple distinct marks; do not leave stubs unfilled or unlinked (mapsTo must reference a real component.localFeatures or material.localOverrides entry)."
+}

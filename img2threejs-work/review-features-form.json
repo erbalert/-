@@ -1,0 +1,9 @@
+[
+  {"id": "body-two-tone-and-roof", "score": 0.85, "visible": true, "notes": "roof/body color break remains clear and correctly proportioned"},
+  {"id": "wheel-tire-system", "score": 0.80, "visible": true, "notes": "tread lug ring, 5-spoke hub, and lug nuts now render as instanced geometry on all 4 wheels + spare"},
+  {"id": "front-face-identity", "score": 0.85, "visible": true, "notes": "7-slat grille (fixed contrast/gap), round headlights with bezel ring, amber turn signals (fixed occlusion + color) all read correctly"},
+  {"id": "rear-face-identity", "score": 0.82, "visible": true, "notes": "red taillights, tailgate, and tailgate-mounted spare tire with matching tread all present"},
+  {"id": "greenhouse-rollcage", "score": 0.68, "visible": true, "notes": "roll-cage brace visible through rear quarter glass but faint at this render distance"},
+  {"id": "lower-body-hardware", "score": 0.75, "visible": true, "notes": "fender flares, rocker rails, bumpers correctly placed, still blocky pending form curvature"},
+  {"id": "cab-hardware", "score": 0.60, "visible": true, "notes": "doors/mirrors/hood panel present, wiper arms not clearly legible at render distance"}
+]

@@ -1,0 +1,5 @@
+[
+  {"id": "front-face-identity", "score": 0.85, "visible": true, "notes": "grille/headlight/turn-signal colors and contrast hold up under the material pass"},
+  {"id": "rear-face-identity", "score": 0.82, "visible": true, "notes": "taillight red and spare tire tread remain correct"},
+  {"id": "reference-material-lookdev", "score": 0.76, "visible": true, "notes": "body paint, black trim, and wheel metal use real reference-extracted albedo/roughness/normal/AO maps (confidence 0.77-0.87); tire rubber and small lens materials use the sheet's own flat palette values since photo crops of those surfaces were contaminated by the studio's blue rim light"}
+]

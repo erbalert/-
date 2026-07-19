@@ -1,0 +1,83 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.866,
+  "estimatedFidelity": 0.866,
+  "targetThreshold": 0.7,
+  "materialId": "mat-tire-rubber",
+  "sourceImage": "/home/user/-/img2threejs-work/pbr-crops/crop-tire-rubber-e.png",
+  "outDir": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber",
+  "palette": [
+    "#2A537E",
+    "#0A0908",
+    "#2F5B87",
+    "#213F5D",
+    "#191B1D"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber/mat-tire-rubber_albedo.png",
+      "url": "mat-tire-rubber_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber/mat-tire-rubber_roughness.png",
+      "url": "mat-tire-rubber_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber/mat-tire-rubber_height.png",
+      "url": "mat-tire-rubber_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber/mat-tire-rubber_normal.png",
+      "url": "mat-tire-rubber_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber/mat-tire-rubber_ao.png",
+      "url": "mat-tire-rubber_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 80,
+    "sourceHeight": 55,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 80,
+      "height": 55
+    },
+    "mask": {
+      "backgroundColor": "#204265",
+      "backgroundNoise": 90.216,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.2541
+    },
+    "mapStats": {
+      "valueRange": 0.3083,
+      "heightP90Gradient": 0.03308,
+      "roughnessBase": 0.68,
+      "roughnessVariation": 0.05,
+      "normalStrength": 0.195,
+      "blurRadius": 21
+    },
+    "palette": [
+      "#2A537E",
+      "#0A0908",
+      "#2F5B87",
+      "#213F5D",
+      "#191B1D"
+    ]
+  },
+  "warnings": [],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}
