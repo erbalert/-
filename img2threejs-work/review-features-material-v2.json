@@ -1,0 +1,5 @@
+[
+  {"id": "front-face-identity", "score": 0.85, "visible": true, "notes": "grille/headlight/turn-signal appearance unaffected by the tire/wheel-metal material update"},
+  {"id": "rear-face-identity", "score": 0.82, "visible": true, "notes": "taillight and spare tire still correct; spare tire tread now uses the improved tire-rubber material too"},
+  {"id": "reference-material-lookdev", "score": 0.83, "visible": true, "notes": "tire rubber and wheel metal both now carry genuine >=0.7-confidence reference-derived PBR maps; no material on the vehicle relies on an unverified flat fallback anymore"}
+]

@@ -7779,15 +7779,15 @@
       "baseColor": "#151515",
       "color": "#151515",
       "albedo": {
-        "dominant": "#2A537E",
+        "dominant": "#10131B",
         "secondary": [
-          "#0A0908",
-          "#2F5B87",
-          "#213F5D"
+          "#1C1C1A",
+          "#354861",
+          "#0A0C0F"
         ],
         "samplingNotes": "Reference-derived from foreground pixels; de-lit to reduce baked shadows/highlights.",
         "map": {
-          "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber/mat-tire-rubber_albedo.png",
+          "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber-v2/mat-tire-rubber_albedo.png",
           "url": "mat-tire-rubber_albedo.png",
           "channel": "albedo",
           "source": "reference-pixel-extraction"
@@ -7795,14 +7795,14 @@
       },
       "colorVariation": {
         "palette": [
-          "#2A537E",
-          "#0A0908",
-          "#2F5B87",
-          "#213F5D",
-          "#191B1D"
+          "#10131B",
+          "#1C1C1A",
+          "#354861",
+          "#0A0C0F",
+          "#1F2937"
         ],
         "pattern": "reference-derived pixel palette",
-        "amplitude": 0.129,
+        "amplitude": 0.107,
         "heightCorrelation": 0.42
       },
       "textureResolution": 1024,
@@ -7819,19 +7819,19 @@
         {
           "id": "macro",
           "frequency": 2.0,
-          "amplitude": 0.388,
+          "amplitude": 0.369,
           "role": "reference-derived broad albedo and height breakup"
         },
         {
           "id": "meso",
           "frequency": 14.0,
-          "amplitude": 0.289,
+          "amplitude": 0.176,
           "role": "reference-derived cracks, ridges, pores, grain, or leaf clusters"
         },
         {
           "id": "micro",
           "frequency": 72.0,
-          "amplitude": 0.134,
+          "amplitude": 0.07,
           "role": "reference-derived micro highlight breakup under grazing light"
         }
       ],
@@ -7839,7 +7839,7 @@
         "base": 0.68,
         "variation": 0.05,
         "map": {
-          "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber/mat-tire-rubber_roughness.png",
+          "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber-v2/mat-tire-rubber_roughness.png",
           "url": "mat-tire-rubber_roughness.png",
           "channel": "roughness",
           "source": "reference-pixel-extraction"
@@ -7852,15 +7852,15 @@
       },
       "normal": {
         "pattern": "reference-derived height-gradient normal map",
-        "strength": 0.195,
+        "strength": 0.164,
         "map": {
-          "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber/mat-tire-rubber_normal.png",
+          "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber-v2/mat-tire-rubber_normal.png",
           "url": "mat-tire-rubber_normal.png",
           "channel": "normal",
           "source": "reference-pixel-extraction"
         },
         "heightSource": {
-          "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber/mat-tire-rubber_height.png",
+          "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber-v2/mat-tire-rubber_height.png",
           "url": "mat-tire-rubber_height.png",
           "channel": "height",
           "source": "reference-pixel-extraction"
@@ -7869,9 +7869,9 @@
       },
       "bump": {
         "pattern": "reference-derived height field",
-        "amplitude": 0.015,
+        "amplitude": 0.01,
         "map": {
-          "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber/mat-tire-rubber_height.png",
+          "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber-v2/mat-tire-rubber_height.png",
           "url": "mat-tire-rubber_height.png",
           "channel": "height",
           "source": "reference-pixel-extraction"
@@ -7887,8 +7887,279 @@
         "cavityStrength": 0.38,
         "contactShadowBias": 0.35,
         "map": {
-          "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber/mat-tire-rubber_ao.png",
+          "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber-v2/mat-tire-rubber_ao.png",
           "url": "mat-tire-rubber_ao.png",
+          "channel": "ao",
+          "source": "reference-pixel-extraction"
+        },
+        "notes": "Reference-derived cavity estimate from local height minima; verify against grazing-light screenshot."
+      },
+      "wear": {
+        "edgeWear": 0.08,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.06,
+        "cavityBias": 0.3,
+        "color": "#2B2620"
+      },
+      "localOverrides": [
+        {
+          "id": "reference-pbr-pixel-evidence",
+          "type": "material-map-evidence",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "channels": [
+            "albedo",
+            "roughness",
+            "height",
+            "normal",
+            "ambient-occlusion"
+          ],
+          "notes": "Use generated maps as material evidence, then refine after browser screenshot comparison."
+        },
+        {
+          "id": "reference-pbr-pixel-evidence",
+          "type": "material-map-evidence",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "channels": [
+            "albedo",
+            "roughness",
+            "height",
+            "normal",
+            "ambient-occlusion"
+          ],
+          "notes": "Use generated maps as material evidence, then refine after browser screenshot comparison."
+        },
+        {
+          "id": "reference-pbr-pixel-evidence",
+          "type": "material-map-evidence",
+          "evidenceRefs": [
+            "full-object"
+          ],
+          "channels": [
+            "albedo",
+            "roughness",
+            "height",
+            "normal",
+            "ambient-occlusion"
+          ],
+          "notes": "Use generated maps as material evidence, then refine after browser screenshot comparison."
+        }
+      ],
+      "shaderNotes": [
+        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
+        "Use MeshPhysicalMaterial when clearcoat/transmission/emissive response is needed (glass, lenses); MeshStandardMaterial otherwise.",
+        "Reference-derived maps are estimates from image pixels; verify with neutral, grazing, and reference-matched renders.",
+        "Do not treat baked image shadows as final albedo; rerun extraction with a tighter material crop if highlights/shadows pollute the maps.",
+        "Reference-derived maps are estimates from image pixels; verify with neutral, grazing, and reference-matched renders.",
+        "Do not treat baked image shadows as final albedo; rerun extraction with a tighter material crop if highlights/shadows pollute the maps.",
+        "Reference-derived maps are estimates from image pixels; verify with neutral, grazing, and reference-matched renders.",
+        "Do not treat baked image shadows as final albedo; rerun extraction with a tighter material crop if highlights/shadows pollute the maps."
+      ],
+      "notes": "All-Terrain Tire Rubber: image-derived color/roughness from a clean tread crop in the user-supplied individual side-view reference (reference-views/side-view.jpg), confidence 0.749. Earlier crops from the composite reference sheet picked up blue studio rim-light bleed on the tire's curved surface; this crop from a dedicated single-subject image avoided that contamination.",
+      "referencePbr": {
+        "version": "1.0",
+        "sourceImage": "/home/user/-/img2threejs-work/reference-views/side-view.jpg -> pbr-crops2/v2-tire-c.png",
+        "extractor": "extract_reference_pbr.py",
+        "method": "single-image pixel evidence with de-lighting estimate; not photogrammetry",
+        "usable": true,
+        "verdict": "pass",
+        "confidence": 0.749,
+        "estimatedFidelity": 0.749,
+        "targetThreshold": 0.7,
+        "hardLimit": "A single image cannot uniquely recover true albedo/roughness/normal/AO; maps are reference-derived estimates.",
+        "maps": {
+          "albedo": {
+            "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber-v2/mat-tire-rubber_albedo.png",
+            "url": "/pbr-maps/tire-rubber/mat-tire-rubber_albedo.png",
+            "channel": "albedo",
+            "source": "reference-pixel-extraction"
+          },
+          "roughness": {
+            "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber-v2/mat-tire-rubber_roughness.png",
+            "url": "/pbr-maps/tire-rubber/mat-tire-rubber_roughness.png",
+            "channel": "roughness",
+            "source": "reference-pixel-extraction"
+          },
+          "height": {
+            "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber-v2/mat-tire-rubber_height.png",
+            "url": "/pbr-maps/tire-rubber/mat-tire-rubber_height.png",
+            "channel": "height",
+            "source": "reference-pixel-extraction"
+          },
+          "normal": {
+            "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber-v2/mat-tire-rubber_normal.png",
+            "url": "/pbr-maps/tire-rubber/mat-tire-rubber_normal.png",
+            "channel": "normal",
+            "source": "reference-pixel-extraction"
+          },
+          "ao": {
+            "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber-v2/mat-tire-rubber_ao.png",
+            "url": "/pbr-maps/tire-rubber/mat-tire-rubber_ao.png",
+            "channel": "ao",
+            "source": "reference-pixel-extraction"
+          }
+        },
+        "diagnostics": {
+          "sourceWidth": 40,
+          "sourceHeight": 25,
+          "mapSize": 1024,
+          "cropBBoxPixels": {
+            "x": 1,
+            "y": 0,
+            "width": 39,
+            "height": 25
+          },
+          "mask": {
+            "backgroundColor": "#2B2E2E",
+            "backgroundNoise": 26.608,
+            "transparentPixelFraction": 0.0,
+            "foregroundCoverage": 0.115
+          },
+          "mapStats": {
+            "valueRange": 0.2554,
+            "heightP90Gradient": 0.00629,
+            "roughnessBase": 0.68,
+            "roughnessVariation": 0.05,
+            "normalStrength": 0.164,
+            "blurRadius": 21
+          },
+          "palette": [
+            "#10131B",
+            "#1C1C1A",
+            "#354861",
+            "#0A0C0F",
+            "#1F2937"
+          ]
+        },
+        "warnings": [
+          "low high-frequency detail weakens normal/roughness inference"
+        ]
+      }
+    },
+    {
+      "id": "mat-wheel-metal",
+      "name": "Gunmetal Alloy Rim",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial",
+      "baseColor": "#3B3B3E",
+      "color": "#3B3B3E",
+      "albedo": {
+        "dominant": "#0B0C0C",
+        "secondary": [
+          "#040404",
+          "#323435",
+          "#161816"
+        ],
+        "samplingNotes": "Reference-derived from foreground pixels; de-lit to reduce baked shadows/highlights.",
+        "map": {
+          "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal-v2/mat-wheel-metal_albedo.png",
+          "url": "mat-wheel-metal_albedo.png",
+          "channel": "albedo",
+          "source": "reference-pixel-extraction"
+        }
+      },
+      "colorVariation": {
+        "palette": [
+          "#0B0C0C",
+          "#040404",
+          "#323435",
+          "#161816",
+          "#838383"
+        ],
+        "pattern": "reference-derived pixel palette",
+        "amplitude": 0.164,
+        "heightCorrelation": 0.42
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "uv",
+        "repeat": [
+          1.0,
+          1.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Preserve stable object-scale detail; do not stretch micro detail with component scale."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.416,
+          "role": "reference-derived broad albedo and height breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 14.0,
+          "amplitude": 0.237,
+          "role": "reference-derived cracks, ridges, pores, grain, or leaf clusters"
+        },
+        {
+          "id": "micro",
+          "frequency": 72.0,
+          "amplitude": 0.104,
+          "role": "reference-derived micro highlight breakup under grazing light"
+        }
+      ],
+      "roughness": {
+        "base": 0.682,
+        "variation": 0.05,
+        "map": {
+          "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal-v2/mat-wheel-metal_roughness.png",
+          "url": "mat-wheel-metal_roughness.png",
+          "channel": "roughness",
+          "source": "reference-pixel-extraction"
+        },
+        "localResponse": "reference-derived roughness estimate; cavities and textured zones trend rougher, bright highlights trend smoother"
+      },
+      "metalness": {
+        "base": 0.6,
+        "variation": 0.05
+      },
+      "normal": {
+        "pattern": "reference-derived height-gradient normal map",
+        "strength": 0.18,
+        "map": {
+          "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal-v2/mat-wheel-metal_normal.png",
+          "url": "mat-wheel-metal_normal.png",
+          "channel": "normal",
+          "source": "reference-pixel-extraction"
+        },
+        "heightSource": {
+          "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal-v2/mat-wheel-metal_height.png",
+          "url": "mat-wheel-metal_height.png",
+          "channel": "height",
+          "source": "reference-pixel-extraction"
+        },
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "reference-derived height field",
+        "amplitude": 0.01,
+        "map": {
+          "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal-v2/mat-wheel-metal_height.png",
+          "url": "mat-wheel-metal_height.png",
+          "channel": "height",
+          "source": "reference-pixel-extraction"
+        }
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.38,
+        "contactShadowBias": 0.35,
+        "map": {
+          "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal-v2/mat-wheel-metal_ao.png",
+          "url": "mat-wheel-metal_ao.png",
           "channel": "ao",
           "source": "reference-pixel-extraction"
         },
@@ -7944,239 +8215,80 @@
         "Reference-derived maps are estimates from image pixels; verify with neutral, grazing, and reference-matched renders.",
         "Do not treat baked image shadows as final albedo; rerun extraction with a tighter material crop if highlights/shadows pollute the maps."
       ],
-      "notes": "All-Terrain Tire Rubber: image-derived color/roughness from the reference spec-sheet swatches and zone crops. qualityTier=utility: photographic tire crops picked up blue studio rim-light/background reflection off the curved rubber surface across 3 crop attempts; using the reference sheet's own near-black palette swatch value directly is more faithful to the sheet's explicit 'matte/simplified' stylized intent than a contaminated photo extraction.",
-      "qualityTier": "utility"
-    },
-    {
-      "id": "mat-wheel-metal",
-      "name": "Gunmetal Alloy Rim",
-      "type": "standard",
-      "shaderModel": "MeshStandardMaterial",
-      "baseColor": "#3B3B3E",
-      "color": "#3B3B3E",
-      "albedo": {
-        "dominant": "#090807",
-        "secondary": [
-          "#11100E",
-          "#030202",
-          "#1B1B19"
-        ],
-        "samplingNotes": "Reference-derived from foreground pixels; de-lit to reduce baked shadows/highlights.",
-        "map": {
-          "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal/mat-wheel-metal_albedo.png",
-          "url": "mat-wheel-metal_albedo.png",
-          "channel": "albedo",
-          "source": "reference-pixel-extraction"
-        }
-      },
-      "colorVariation": {
-        "palette": [
-          "#090807",
-          "#11100E",
-          "#030202",
-          "#1B1B19",
-          "#7C7F7E"
-        ],
-        "pattern": "reference-derived pixel palette",
-        "amplitude": 0.165,
-        "heightCorrelation": 0.42
-      },
-      "textureResolution": 1024,
-      "textureProjection": {
-        "mode": "uv",
-        "repeat": [
-          1.0,
-          1.0
-        ],
-        "anisotropy": 8,
-        "texelDensityIntent": "Preserve stable object-scale detail; do not stretch micro detail with component scale."
-      },
-      "surfaceFrequencyBands": [
-        {
-          "id": "macro",
-          "frequency": 2.0,
-          "amplitude": 0.417,
-          "role": "reference-derived broad albedo and height breakup"
-        },
-        {
-          "id": "meso",
-          "frequency": 14.0,
-          "amplitude": 0.214,
-          "role": "reference-derived cracks, ridges, pores, grain, or leaf clusters"
-        },
-        {
-          "id": "micro",
-          "frequency": 72.0,
-          "amplitude": 0.091,
-          "role": "reference-derived micro highlight breakup under grazing light"
-        }
-      ],
-      "roughness": {
-        "base": 0.681,
-        "variation": 0.05,
-        "map": {
-          "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal/mat-wheel-metal_roughness.png",
-          "url": "mat-wheel-metal_roughness.png",
-          "channel": "roughness",
-          "source": "reference-pixel-extraction"
-        },
-        "localResponse": "reference-derived roughness estimate; cavities and textured zones trend rougher, bright highlights trend smoother"
-      },
-      "metalness": {
-        "base": 0.6,
-        "variation": 0.05
-      },
-      "normal": {
-        "pattern": "reference-derived height-gradient normal map",
-        "strength": 0.174,
-        "map": {
-          "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal/mat-wheel-metal_normal.png",
-          "url": "mat-wheel-metal_normal.png",
-          "channel": "normal",
-          "source": "reference-pixel-extraction"
-        },
-        "heightSource": {
-          "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal/mat-wheel-metal_height.png",
-          "url": "mat-wheel-metal_height.png",
-          "channel": "height",
-          "source": "reference-pixel-extraction"
-        },
-        "space": "tangent"
-      },
-      "bump": {
-        "pattern": "reference-derived height field",
-        "amplitude": 0.01,
-        "map": {
-          "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal/mat-wheel-metal_height.png",
-          "url": "mat-wheel-metal_height.png",
-          "channel": "height",
-          "source": "reference-pixel-extraction"
-        }
-      },
-      "displacement": {
-        "pattern": "none",
-        "amplitude": 0.0,
-        "scale": 1.0,
-        "silhouetteAffects": false
-      },
-      "ambientOcclusion": {
-        "cavityStrength": 0.38,
-        "contactShadowBias": 0.35,
-        "map": {
-          "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal/mat-wheel-metal_ao.png",
-          "url": "mat-wheel-metal_ao.png",
-          "channel": "ao",
-          "source": "reference-pixel-extraction"
-        },
-        "notes": "Reference-derived cavity estimate from local height minima; verify against grazing-light screenshot."
-      },
-      "wear": {
-        "edgeWear": 0.08,
-        "scratches": [],
-        "chips": []
-      },
-      "dirt": {
-        "amount": 0.06,
-        "cavityBias": 0.3,
-        "color": "#2B2620"
-      },
-      "localOverrides": [
-        {
-          "id": "reference-pbr-pixel-evidence",
-          "type": "material-map-evidence",
-          "evidenceRefs": [
-            "full-object"
-          ],
-          "channels": [
-            "albedo",
-            "roughness",
-            "height",
-            "normal",
-            "ambient-occlusion"
-          ],
-          "notes": "Use generated maps as material evidence, then refine after browser screenshot comparison."
-        }
-      ],
-      "shaderNotes": [
-        "Generate albedo, roughness, height/normal, and AO independently; never alias albedo into roughness.",
-        "Use MeshPhysicalMaterial when clearcoat/transmission/emissive response is needed (glass, lenses); MeshStandardMaterial otherwise.",
-        "Reference-derived maps are estimates from image pixels; verify with neutral, grazing, and reference-matched renders.",
-        "Do not treat baked image shadows as final albedo; rerun extraction with a tighter material crop if highlights/shadows pollute the maps."
-      ],
       "notes": "Gunmetal Alloy Rim: image-derived color/roughness from the reference spec-sheet swatches and zone crops.",
       "referencePbr": {
         "version": "1.0",
-        "sourceImage": "/home/user/-/img2threejs-work/pbr-crops/crop-wheel-metal.png",
+        "sourceImage": "/home/user/-/img2threejs-work/reference-views/side-view.jpg -> pbr-crops2/v2-wheelmetal-b.png",
         "extractor": "extract_reference_pbr.py",
         "method": "single-image pixel evidence with de-lighting estimate; not photogrammetry",
         "usable": true,
         "verdict": "pass",
-        "confidence": 0.853,
-        "estimatedFidelity": 0.853,
+        "confidence": 0.886,
+        "estimatedFidelity": 0.886,
         "targetThreshold": 0.7,
         "hardLimit": "A single image cannot uniquely recover true albedo/roughness/normal/AO; maps are reference-derived estimates.",
         "maps": {
           "albedo": {
-            "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal/mat-wheel-metal_albedo.png",
+            "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal-v2/mat-wheel-metal_albedo.png",
             "url": "/pbr-maps/wheel-metal/mat-wheel-metal_albedo.png",
             "channel": "albedo",
             "source": "reference-pixel-extraction"
           },
           "roughness": {
-            "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal/mat-wheel-metal_roughness.png",
+            "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal-v2/mat-wheel-metal_roughness.png",
             "url": "/pbr-maps/wheel-metal/mat-wheel-metal_roughness.png",
             "channel": "roughness",
             "source": "reference-pixel-extraction"
           },
           "height": {
-            "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal/mat-wheel-metal_height.png",
+            "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal-v2/mat-wheel-metal_height.png",
             "url": "/pbr-maps/wheel-metal/mat-wheel-metal_height.png",
             "channel": "height",
             "source": "reference-pixel-extraction"
           },
           "normal": {
-            "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal/mat-wheel-metal_normal.png",
+            "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal-v2/mat-wheel-metal_normal.png",
             "url": "/pbr-maps/wheel-metal/mat-wheel-metal_normal.png",
             "channel": "normal",
             "source": "reference-pixel-extraction"
           },
           "ao": {
-            "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal/mat-wheel-metal_ao.png",
+            "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal-v2/mat-wheel-metal_ao.png",
             "url": "/pbr-maps/wheel-metal/mat-wheel-metal_ao.png",
             "channel": "ao",
             "source": "reference-pixel-extraction"
           }
         },
         "diagnostics": {
-          "sourceWidth": 50,
-          "sourceHeight": 50,
+          "sourceWidth": 35,
+          "sourceHeight": 32,
           "mapSize": 1024,
           "cropBBoxPixels": {
             "x": 0,
             "y": 0,
-            "width": 44,
-            "height": 50
+            "width": 35,
+            "height": 32
           },
           "mask": {
-            "backgroundColor": "#292727",
-            "backgroundNoise": 23.77,
+            "backgroundColor": "#1A1918",
+            "backgroundNoise": 11.0,
             "transparentPixelFraction": 0.0,
-            "foregroundCoverage": 0.1996
+            "foregroundCoverage": 0.3143
           },
           "mapStats": {
-            "valueRange": 0.3925,
-            "heightP90Gradient": 0.01514,
-            "roughnessBase": 0.681,
+            "valueRange": 0.3897,
+            "heightP90Gradient": 0.02062,
+            "roughnessBase": 0.682,
             "roughnessVariation": 0.05,
-            "normalStrength": 0.174,
+            "normalStrength": 0.18,
             "blurRadius": 21
           },
           "palette": [
-            "#090807",
-            "#11100E",
-            "#030202",
-            "#1B1B19",
-            "#7C7F7E"
+            "#0B0C0C",
+            "#040404",
+            "#323435",
+            "#161816",
+            "#838383"
           ]
         },
         "warnings": []
@@ -9108,6 +9220,46 @@
       "cameraView": "three-quarter",
       "notes": "",
       "aiVisionNotes": "Triangle/draw-call counts were measured directly from renderer.info, not estimated; the 94% cut was verified to not change the rendered silhouette or material read in the final screenshots."
+    },
+    {
+      "timestamp": "2026-07-19T22:27:41.673059+00:00",
+      "passId": "material-pass",
+      "estimatedFidelity": 0.85,
+      "aiVisionScore": 0.85,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.85,
+        "componentStructure": 0.85,
+        "formDetail": 0.78,
+        "materialSurface": 0.82,
+        "lightingCamera": 0.78
+      },
+      "featureReviews": [
+        {
+          "id": "front-face-identity",
+          "score": 0.85,
+          "visible": true,
+          "notes": "grille/headlight/turn-signal appearance unaffected by the tire/wheel-metal material update"
+        },
+        {
+          "id": "rear-face-identity",
+          "score": 0.82,
+          "visible": true,
+          "notes": "taillight and spare tire still correct; spare tire tread now uses the improved tire-rubber material too"
+        },
+        {
+          "id": "reference-material-lookdev",
+          "score": 0.83,
+          "visible": true,
+          "notes": "tire rubber and wheel metal both now carry genuine >=0.7-confidence reference-derived PBR maps; no material on the vehicle relies on an unverified flat fallback anymore"
+        }
+      ],
+      "referenceScreenshot": "reference.png",
+      "renderScreenshot": "renders/v2-3q.png",
+      "comparisonImage": "renders/v2-cmp-3q.png",
+      "cameraView": "three-quarter",
+      "notes": "",
+      "aiVisionNotes": "The last remaining material gap (tire rubber) is now closed with a real extraction from a clean single-subject reference image, eliminating the blue-tint artifact that was previously an accepted limitation."
     }
   ],
   "reviewHistory": [
@@ -9655,6 +9807,67 @@
         "notes": "",
         "aiVisionNotes": "Triangle/draw-call counts were measured directly from renderer.info, not estimated; the 94% cut was verified to not change the rendered silhouette or material read in the final screenshots."
       }
+    },
+    {
+      "timestamp": "2026-07-19T22:27:41.673059+00:00",
+      "passId": "material-pass",
+      "estimatedFidelity": 0.85,
+      "aiVisionScore": 0.85,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.85,
+        "componentStructure": 0.85,
+        "formDetail": 0.78,
+        "materialSurface": 0.82,
+        "lightingCamera": 0.78
+      },
+      "featureReviews": [
+        {
+          "id": "front-face-identity",
+          "score": 0.85,
+          "visible": true,
+          "notes": "grille/headlight/turn-signal appearance unaffected by the tire/wheel-metal material update"
+        },
+        {
+          "id": "rear-face-identity",
+          "score": 0.82,
+          "visible": true,
+          "notes": "taillight and spare tire still correct; spare tire tread now uses the improved tire-rubber material too"
+        },
+        {
+          "id": "reference-material-lookdev",
+          "score": 0.83,
+          "visible": true,
+          "notes": "tire rubber and wheel metal both now carry genuine >=0.7-confidence reference-derived PBR maps; no material on the vehicle relies on an unverified flat fallback anymore"
+        }
+      ],
+      "action": "continue",
+      "summary": "User supplied 4 clean individual reference views (front/side/top/rear, no composite-sheet clutter). Re-extracted tire-rubber and wheel-metal PBR from clean crops of the new side-view image: tire-rubber now has a genuine reference-derived extraction (confidence 0.749, qualityTier=utility removed) instead of the flat-color fallback used previously because every composite-sheet tire crop picked up blue studio rim-light bleed. Wheel-metal confidence improved 0.853 -> 0.886.",
+      "matched": [
+        "wheels now render as true near-black rubber instead of the blue-tinted appearance from the flat fallback color reacting with scene ambient light",
+        "rim reads a cleaner gunmetal metallic tone",
+        "body paint and black trim confirmed still best-sourced from the original composite-sheet crops (0.866/0.771 vs 0.764/0.727 from the new images), so those were left unchanged"
+      ],
+      "mismatches": [],
+      "specFixes": [],
+      "codeFixes": [],
+      "evidence": [
+        "renders/v2-3q.png",
+        "renders/v2-side.png",
+        "renders/v2-cmp-3q.png",
+        "reference-views/side-view.jpg",
+        "reference-views/front-view.jpg",
+        "reference-views/top-view.jpg",
+        "reference-views/rear-view.jpg"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "reference.png",
+        "renderScreenshot": "renders/v2-3q.png",
+        "comparisonImage": "renders/v2-cmp-3q.png",
+        "cameraView": "three-quarter",
+        "notes": "",
+        "aiVisionNotes": "The last remaining material gap (tire rubber) is now closed with a real extraction from a clean single-subject reference image, eliminating the blue-tint artifact that was previously an accepted limitation."
+      }
     }
   ],
   "lodPlan": [
@@ -9933,6 +10146,82 @@
         "ao": {
           "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber/mat-tire-rubber_ao.png",
           "url": "mat-tire-rubber_ao.png",
+          "channel": "ao",
+          "source": "reference-pixel-extraction"
+        }
+      }
+    },
+    {
+      "materialId": "mat-tire-rubber",
+      "confidence": 0.749,
+      "verdict": "pass",
+      "usable": true,
+      "maps": {
+        "albedo": {
+          "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber-v2/mat-tire-rubber_albedo.png",
+          "url": "mat-tire-rubber_albedo.png",
+          "channel": "albedo",
+          "source": "reference-pixel-extraction"
+        },
+        "roughness": {
+          "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber-v2/mat-tire-rubber_roughness.png",
+          "url": "mat-tire-rubber_roughness.png",
+          "channel": "roughness",
+          "source": "reference-pixel-extraction"
+        },
+        "height": {
+          "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber-v2/mat-tire-rubber_height.png",
+          "url": "mat-tire-rubber_height.png",
+          "channel": "height",
+          "source": "reference-pixel-extraction"
+        },
+        "normal": {
+          "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber-v2/mat-tire-rubber_normal.png",
+          "url": "mat-tire-rubber_normal.png",
+          "channel": "normal",
+          "source": "reference-pixel-extraction"
+        },
+        "ao": {
+          "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber-v2/mat-tire-rubber_ao.png",
+          "url": "mat-tire-rubber_ao.png",
+          "channel": "ao",
+          "source": "reference-pixel-extraction"
+        }
+      }
+    },
+    {
+      "materialId": "mat-wheel-metal",
+      "confidence": 0.886,
+      "verdict": "pass",
+      "usable": true,
+      "maps": {
+        "albedo": {
+          "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal-v2/mat-wheel-metal_albedo.png",
+          "url": "mat-wheel-metal_albedo.png",
+          "channel": "albedo",
+          "source": "reference-pixel-extraction"
+        },
+        "roughness": {
+          "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal-v2/mat-wheel-metal_roughness.png",
+          "url": "mat-wheel-metal_roughness.png",
+          "channel": "roughness",
+          "source": "reference-pixel-extraction"
+        },
+        "height": {
+          "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal-v2/mat-wheel-metal_height.png",
+          "url": "mat-wheel-metal_height.png",
+          "channel": "height",
+          "source": "reference-pixel-extraction"
+        },
+        "normal": {
+          "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal-v2/mat-wheel-metal_normal.png",
+          "url": "mat-wheel-metal_normal.png",
+          "channel": "normal",
+          "source": "reference-pixel-extraction"
+        },
+        "ao": {
+          "path": "/home/user/-/img2threejs-work/pbr-maps/wheel-metal-v2/mat-wheel-metal_ao.png",
+          "url": "mat-wheel-metal_ao.png",
           "channel": "ao",
           "source": "reference-pixel-extraction"
         }

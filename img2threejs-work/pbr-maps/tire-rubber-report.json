@@ -1,83 +1,85 @@
 {
   "ok": true,
   "verdict": "pass",
-  "confidence": 0.866,
-  "estimatedFidelity": 0.866,
+  "confidence": 0.749,
+  "estimatedFidelity": 0.749,
   "targetThreshold": 0.7,
   "materialId": "mat-tire-rubber",
-  "sourceImage": "/home/user/-/img2threejs-work/pbr-crops/crop-tire-rubber-e.png",
-  "outDir": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber",
+  "sourceImage": "/home/user/-/img2threejs-work/pbr-crops2/v2-tire-c.png",
+  "outDir": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber-v2",
   "palette": [
-    "#2A537E",
-    "#0A0908",
-    "#2F5B87",
-    "#213F5D",
-    "#191B1D"
+    "#10131B",
+    "#1C1C1A",
+    "#354861",
+    "#0A0C0F",
+    "#1F2937"
   ],
   "maps": {
     "albedo": {
-      "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber/mat-tire-rubber_albedo.png",
+      "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber-v2/mat-tire-rubber_albedo.png",
       "url": "mat-tire-rubber_albedo.png",
       "channel": "albedo",
       "source": "reference-pixel-extraction"
     },
     "roughness": {
-      "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber/mat-tire-rubber_roughness.png",
+      "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber-v2/mat-tire-rubber_roughness.png",
       "url": "mat-tire-rubber_roughness.png",
       "channel": "roughness",
       "source": "reference-pixel-extraction"
     },
     "height": {
-      "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber/mat-tire-rubber_height.png",
+      "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber-v2/mat-tire-rubber_height.png",
       "url": "mat-tire-rubber_height.png",
       "channel": "height",
       "source": "reference-pixel-extraction"
     },
     "normal": {
-      "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber/mat-tire-rubber_normal.png",
+      "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber-v2/mat-tire-rubber_normal.png",
       "url": "mat-tire-rubber_normal.png",
       "channel": "normal",
       "source": "reference-pixel-extraction"
     },
     "ao": {
-      "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber/mat-tire-rubber_ao.png",
+      "path": "/home/user/-/img2threejs-work/pbr-maps/tire-rubber-v2/mat-tire-rubber_ao.png",
       "url": "mat-tire-rubber_ao.png",
       "channel": "ao",
       "source": "reference-pixel-extraction"
     }
   },
   "diagnostics": {
-    "sourceWidth": 80,
-    "sourceHeight": 55,
+    "sourceWidth": 40,
+    "sourceHeight": 25,
     "mapSize": 1024,
     "cropBBoxPixels": {
-      "x": 0,
+      "x": 1,
       "y": 0,
-      "width": 80,
-      "height": 55
+      "width": 39,
+      "height": 25
     },
     "mask": {
-      "backgroundColor": "#204265",
-      "backgroundNoise": 90.216,
+      "backgroundColor": "#2B2E2E",
+      "backgroundNoise": 26.608,
       "transparentPixelFraction": 0.0,
-      "foregroundCoverage": 0.2541
+      "foregroundCoverage": 0.115
     },
     "mapStats": {
-      "valueRange": 0.3083,
-      "heightP90Gradient": 0.03308,
+      "valueRange": 0.2554,
+      "heightP90Gradient": 0.00629,
       "roughnessBase": 0.68,
       "roughnessVariation": 0.05,
-      "normalStrength": 0.195,
+      "normalStrength": 0.164,
       "blurRadius": 21
     },
     "palette": [
-      "#2A537E",
-      "#0A0908",
-      "#2F5B87",
-      "#213F5D",
-      "#191B1D"
+      "#10131B",
+      "#1C1C1A",
+      "#354861",
+      "#0A0C0F",
+      "#1F2937"
     ]
   },
-  "warnings": [],
+  "warnings": [
+    "low high-frequency detail weakens normal/roughness inference"
+  ],
   "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
 }
